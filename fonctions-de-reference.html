@@ -1,0 +1,2055 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Fonctions de référence : explorer, comparer, construire et réviser les fonctions du lycée.">
+<title>Fonctions de référence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<style>
+/* Réinitialisation de base */
+:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<style>
+/* Layout : un cahier ouvert — sommaire des fonctions à gauche, papier millimétré au centre, fiche bristol à droite.
+   Thème clair = cahier et stylo quatre couleurs ; thème sombre = tableau noir et craies. */
+:root{
+  --paper:#f3f5f9;
+  --sheet:#ffffff;
+  --board:#fffffd;
+  --ink:#151a29;
+  --ink-2:#4b5468;
+  --ink-3:#737c90;
+  --line:#d9dee8;
+  --accent:#1f45bd;
+  --accent-soft:#e8edfb;
+  --on-accent:#ffffff;
+  --mm-minor:rgba(209,112,38,.12);
+  --mm-major:rgba(209,112,38,.36);
+  --axis:#2b3040;
+  --pen-1:#1f45bd;
+  --pen-2:#cf2e2e;
+  --pen-3:#13804a;
+  --pen-4:#1b1d24;
+  --ghost:rgba(75,84,104,.6);
+  --bristol-rule:#e0505b;
+  --bristol-line:rgba(60,110,210,.14);
+  --ok:#13804a; --ok-soft:#e2f3e9;
+  --bad:#c42b2b; --bad-soft:#fbe8e8;
+  --shadow:0 1px 2px rgba(21,26,41,.05), 0 10px 28px -16px rgba(21,26,41,.22);
+  --f-math:"STIX Two Text","Cambria Math",Cambria,"Times New Roman",serif;
+  --f-ui:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --r:12px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0f1513; --sheet:#172020; --board:#1a2824;
+    --ink:#ecf1ec; --ink-2:#adbab3; --ink-3:#83918a; --line:#2a3833;
+    --accent:#93c3ff; --accent-soft:#1c2f3e; --on-accent:#0c1520;
+    --mm-minor:rgba(236,241,236,.055); --mm-major:rgba(236,241,236,.17); --axis:#e3e9e3;
+    --pen-1:#93c3ff; --pen-2:#ff9ba6; --pen-3:#f2d86e; --pen-4:#f4f4ec;
+    --ghost:rgba(236,241,236,.5);
+    --bristol-rule:#ff8a95; --bristol-line:rgba(147,195,255,.09);
+    --ok:#86d9a5; --ok-soft:#173026; --bad:#ff9d9d; --bad-soft:#3a1d21;
+    --shadow:0 1px 2px rgba(0,0,0,.35), 0 12px 30px -16px rgba(0,0,0,.7);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0f1513; --sheet:#172020; --board:#1a2824;
+  --ink:#ecf1ec; --ink-2:#adbab3; --ink-3:#83918a; --line:#2a3833;
+  --accent:#93c3ff; --accent-soft:#1c2f3e; --on-accent:#0c1520;
+  --mm-minor:rgba(236,241,236,.055); --mm-major:rgba(236,241,236,.17); --axis:#e3e9e3;
+  --pen-1:#93c3ff; --pen-2:#ff9ba6; --pen-3:#f2d86e; --pen-4:#f4f4ec;
+  --ghost:rgba(236,241,236,.5);
+  --bristol-rule:#ff8a95; --bristol-line:rgba(147,195,255,.09);
+  --ok:#86d9a5; --ok-soft:#173026; --bad:#ff9d9d; --bad-soft:#3a1d21;
+  --shadow:0 1px 2px rgba(0,0,0,.35), 0 12px 30px -16px rgba(0,0,0,.7);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.55}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+sup,sub{line-height:0}
+i{font-style:italic}
+
+.wrap{max-width:1380px;margin:0 auto;padding-block:26px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* ---------- En-tête ---------- */
+.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:18px 32px;margin-bottom:22px}
+.brand{min-width:0;max-width:720px}
+.eyebrow{font:700 11px/1.2 var(--f-ui);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin:0 0 6px}
+h1{font-family:var(--f-math);font-weight:600;font-size:clamp(32px,4.4vw,48px);line-height:1.02;letter-spacing:-.01em;margin:0;text-wrap:balance}
+h1 em{font-weight:400;color:var(--accent)}
+.lede{margin:10px 0 0;color:var(--ink-2);max-width:62ch}
+.tabs{display:inline-flex;background:var(--sheet);border:1px solid var(--line);border-radius:999px;padding:4px;gap:2px;box-shadow:var(--shadow)}
+.tabs button{appearance:none;border:0;background:transparent;color:var(--ink-2);font-weight:700;font-size:14px;line-height:1;padding:11px 18px;border-radius:999px;cursor:pointer;transition:background .12s,color .12s}
+.tabs button:hover{color:var(--ink)}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--paper)}
+
+/* ---------- Éléments communs ---------- */
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.lbl{font:700 11px/1.3 var(--f-ui);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);margin:0 0 10px}
+.note{color:var(--ink-3);font-family:var(--f-ui);font-size:12.5px;font-style:normal;letter-spacing:0;text-transform:none;font-weight:400}
+.m{font-family:var(--f-math)}
+.btn{appearance:none;border:1px solid var(--line);background:var(--sheet);color:var(--ink);font-weight:700;font-size:13.5px;line-height:1;padding:10px 14px;border-radius:9px;cursor:pointer;transition:border-color .12s,background .12s}
+.btn:hover{border-color:var(--ink-3)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.primary:hover{filter:brightness(1.07)}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.86em;line-height:1.12;margin:0 .12em}
+.frac>span:first-child{border-bottom:1px solid currentColor;padding:0 .18em .04em}
+.frac>span:last-child{padding:.04em .18em 0}
+.sqrt{white-space:nowrap}
+.sqrt .rad{border-top:1px solid currentColor;padding:0 .08em 0 .04em}
+.lim{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1;margin-right:.3em}
+.lim small{font-size:.62em;margin-top:3px;white-space:nowrap}
+
+/* ---------- Explorer ---------- */
+.explorer{display:grid;grid-template-columns:212px minmax(0,1fr) minmax(310px,390px);gap:20px;align-items:start}
+.rail{display:flex;flex-direction:column;gap:16px;position:sticky;top:16px}
+.grp{display:flex;flex-direction:column;gap:3px}
+.grp h3{margin:0 0 4px 10px}
+.fn{appearance:none;display:grid;grid-template-columns:40px minmax(0,1fr);align-items:center;gap:10px;padding:7px 10px;border-radius:10px;border:1px solid transparent;background:transparent;cursor:pointer;text-align:left}
+.fn:hover{background:var(--sheet);border-color:var(--line)}
+.fn[aria-pressed="true"]{background:var(--sheet);border-color:var(--line);box-shadow:var(--shadow)}
+.fn svg{width:40px;height:28px;display:block;overflow:hidden}
+.fn svg .ax{stroke:var(--line);stroke-width:1;fill:none}
+.fn svg .c{fill:none;stroke:var(--ink-3);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.fn[aria-pressed="true"] svg .c{stroke:var(--accent)}
+.fn .nm{display:block;font-size:13.5px;font-weight:700;line-height:1.2}
+.fn .fx{display:block;font-family:var(--f-math);font-size:15px;color:var(--ink-2);line-height:1.25;white-space:nowrap}
+
+.stage{min-width:0;display:flex;flex-direction:column;gap:16px}
+.graph-card{overflow:hidden}
+.graph-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 10px 9px 16px;border-bottom:1px solid var(--line);min-height:54px}
+.eq{font-family:var(--f-math);font-size:19px;min-width:0;overflow-x:auto;white-space:nowrap;padding:4px 0}
+.zoom{display:flex;gap:4px;flex:none}
+.icon-btn{appearance:none;width:34px;height:34px;border-radius:8px;border:1px solid var(--line);background:var(--sheet);font-weight:700;font-size:17px;line-height:1;cursor:pointer;display:grid;place-items:center;color:var(--ink)}
+.icon-btn:hover{border-color:var(--ink-3)}
+.icon-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.plot{position:relative;width:100%;aspect-ratio:4/3;min-height:290px;max-height:74vh;background:var(--board)}
+.plot canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:crosshair}
+.plot canvas.grabbing{cursor:grabbing}
+.plot canvas.static{cursor:default;touch-action:auto}
+.plot canvas:focus-visible{outline:2px solid var(--accent);outline-offset:-3px}
+.hint{margin:0;padding:9px 16px;font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--line)}
+
+.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px}
+.ctl{padding:16px}
+.prm{display:grid;grid-template-columns:26px minmax(0,1fr) 62px;align-items:center;gap:10px;padding:3px 0}
+.prm label{font-family:var(--f-math);font-style:italic;font-size:19px;line-height:1}
+.prm output{font-family:var(--f-mono);font-size:13px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
+input[type=range]{width:100%;accent-color:var(--accent);margin:0;height:28px}
+.ctl-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.tg{display:flex;align-items:center;gap:10px;padding:5px 0;cursor:pointer;font-size:14.5px}
+.tg input{width:17px;height:17px;accent-color:var(--accent);margin:0}
+.tg.off{color:var(--ink-3);cursor:not-allowed}
+.sep{height:1px;background:var(--line);margin:14px 0}
+.none{margin:0;color:var(--ink-2);font-size:14px}
+.ro{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:7px 14px;margin:12px 0 0;align-items:baseline}
+.ro dt{font-size:12.5px;color:var(--ink-3)}
+.ro dd{margin:0;font-family:var(--f-math);font-size:17px;font-variant-numeric:tabular-nums;min-width:0}
+.warn{color:var(--bad);font-family:var(--f-ui);font-size:14px}
+
+/* Fiche bristol */
+.fiche{overflow:hidden}
+.fiche-head{padding:18px 20px 14px;border-bottom:2px solid var(--bristol-rule)}
+.fiche h2{font-family:var(--f-ui);font-size:20px;line-height:1.25;margin:2px 0 8px}
+.big{font-family:var(--f-math);font-size:28px;line-height:1.35;overflow-x:auto;white-space:nowrap}
+.fiche-body{padding:16px 20px 20px;display:flex;flex-direction:column;gap:20px}
+.fiche-body section{min-width:0}
+.idt{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:9px 14px;margin:0;align-items:baseline}
+.idt dt{color:var(--ink-3);font-size:12.5px;line-height:1.3}
+.idt dd{margin:0;font-family:var(--f-math);font-size:17px;line-height:1.45;min-width:0}
+.vt-wrap{overflow-x:auto}
+svg.vt{width:100%;max-width:440px;height:auto;display:block}
+.vt text{font-family:var(--f-math);font-size:14.5px;fill:var(--ink)}
+.vt text.lab{font-style:italic;fill:var(--ink-2)}
+.vt text.sg{font-size:16px}
+.vt .frame{fill:none;stroke:var(--ink-3);stroke-width:1}
+.vt .bar{stroke:var(--ink);stroke-width:1.1}
+.vt .arr{stroke:var(--accent);stroke-width:1.6;fill:none}
+.vt .ah{fill:var(--accent)}
+.lims{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-family:var(--f-math);font-size:17px}
+.limnote{margin:6px 0 0;font-size:14px;color:var(--ink-2)}
+.pts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px;font-size:14px}
+.pts b{font-family:var(--f-math);font-style:italic;font-size:16px;margin-right:4px}
+.pts .m{font-size:16px}
+.keep{list-style:none;margin:0;padding:0;font-size:14.5px;line-height:27px;background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 26px,var(--bristol-line) 26px,var(--bristol-line) 27px)}
+.keep li{position:relative;padding-left:18px}
+.keep li::before{content:"";position:absolute;left:3px;top:11px;width:6px;height:6px;border-radius:50%;background:var(--bristol-rule)}
+.sti{background:var(--accent-soft);border-radius:10px;padding:13px 15px}
+.sti p{margin:0;font-size:14.5px}
+
+/* ---------- Comparer ---------- */
+.compare{display:grid;grid-template-columns:minmax(260px,330px) minmax(0,1fr);gap:20px;align-items:start}
+.cmp-side{display:flex;flex-direction:column;gap:16px;min-width:0}
+.cmp-main{display:flex;flex-direction:column;gap:16px;min-width:0}
+.presets{display:flex;flex-direction:column;gap:6px}
+.preset{appearance:none;text-align:left;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--sheet);cursor:pointer;display:flex;flex-direction:column;gap:2px}
+.preset:hover{border-color:var(--ink-3)}
+.preset[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.preset .pt{font-weight:700;font-size:14px;line-height:1.3}
+.preset .ps{font-family:var(--f-math);font-size:15px;color:var(--ink-2)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{appearance:none;display:inline-flex;align-items:center;gap:8px;padding:7px 12px 7px 10px;border-radius:999px;border:1px solid var(--line);background:var(--sheet);font-family:var(--f-math);font-size:16px;line-height:1.2;cursor:pointer}
+.chip:hover{border-color:var(--ink-3)}
+.chip .sw{width:12px;height:12px;border-radius:50%;border:1.5px dashed var(--ink-3);flex:none}
+.chip[aria-pressed="true"]{border-color:var(--c);box-shadow:inset 0 0 0 1px var(--c)}
+.chip[aria-pressed="true"] .sw{border:0;background:var(--c)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 16px;font-family:var(--f-math);font-size:17px;min-width:0}
+.legend > span{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.legend .sw,.cmp-ro .sw{width:18px;height:3px;border-radius:2px;flex:none}
+.cmp-ro{display:flex;flex-wrap:wrap;gap:6px 22px;padding:11px 16px;border-top:1px solid var(--line);font-family:var(--f-math);font-size:16px;font-variant-numeric:tabular-nums;min-height:46px;align-items:center}
+.cmp-ro > span{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.cmp-ro .k{color:var(--ink-3);font-family:var(--f-ui);font-size:12.5px}
+.obs{padding:16px 18px;border-top:2px solid var(--bristol-rule)}
+.obs p{margin:0;max-width:72ch}
+.msg{margin:10px 0 0;font-size:13px;color:var(--bad);min-height:1em}
+
+/* ---------- Quiz ---------- */
+.quiz{max-width:800px;margin:0 auto;padding:20px}
+.qhead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.prog{display:flex;gap:5px;flex-wrap:wrap}
+.prog i{display:block;width:26px;height:7px;border-radius:4px;background:var(--line)}
+.prog i.ok{background:var(--ok)}
+.prog i.ko{background:var(--bad)}
+.prog i.cur{background:var(--accent)}
+.qscore{font-family:var(--f-mono);font-size:13px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.qnum{margin:18px 0 0;font:700 11px/1.3 var(--f-ui);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.qtext{font-family:var(--f-math);font-weight:400;font-size:clamp(20px,2.4vw,24px);line-height:1.4;margin:6px 0 16px;text-wrap:balance}
+.qplot{aspect-ratio:16/10;min-height:220px;max-height:46vh;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:16px}
+.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.choice{appearance:none;display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--sheet);font-family:var(--f-math);font-size:19px;line-height:1.3;cursor:pointer;text-align:left;min-height:58px;transition:border-color .12s,background .12s}
+.choice:hover:not(:disabled){border-color:var(--accent)}
+.choice:disabled{cursor:default}
+.choice .key{font:600 12px/1 var(--f-mono);color:var(--ink-3);border:1px solid var(--line);border-radius:6px;padding:5px 7px;flex:none}
+.choice.right{border-color:var(--ok);background:var(--ok-soft)}
+.choice.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.choice.dim{opacity:.55}
+.feedback{margin-top:16px}
+.feedback:empty{display:none}
+.fb{border-radius:10px;padding:14px 16px;background:var(--paper);border:1px solid var(--line)}
+.fb p{margin:0 0 12px}
+.fb .verdict-ok{color:var(--ok)}
+.fb .verdict-ko{color:var(--bad)}
+.fb-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.qend{text-align:center;padding:12px 0 4px}
+.qend .score{font-family:var(--f-math);font-size:64px;line-height:1;margin:6px 0 8px}
+.qend .score small{font-size:28px;color:var(--ink-3)}
+.qend p{margin:0 auto 6px;max-width:52ch;color:var(--ink-2)}
+.missed{list-style:none;margin:18px 0 0;padding:0;text-align:left;display:flex;flex-direction:column;gap:6px}
+.missed li{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font-size:14.5px}
+.missed li > span{min-width:0}
+.qend .ctl-row{justify-content:center;margin-top:18px}
+
+/* ---------- Construire ---------- */
+.cons{display:grid;grid-template-columns:240px minmax(0,1fr);gap:20px;align-items:start}
+.cons-pick{position:sticky;top:16px}
+#exos{display:flex;flex-direction:column;gap:14px}
+.exg{display:flex;flex-direction:column;gap:3px}
+.exg h4{margin:0 0 4px 2px}
+.exo{appearance:none;display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:9px;border:1px solid transparent;background:transparent;cursor:pointer;text-align:left;font-family:var(--f-math);font-size:16px;line-height:1.25;white-space:nowrap}
+.exo:hover{background:var(--paper);border-color:var(--line)}
+.exo[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent)}
+.exo .lv{display:none;font:700 10.5px/1 var(--f-ui);color:var(--ink-3);border:1px solid var(--line);border-radius:5px;padding:3px 5px}
+.exo .st{margin-left:auto;font:700 11.5px/1 var(--f-ui);color:var(--ok);font-variant-numeric:tabular-nums;padding-left:6px}
+.cons-main{display:flex;flex-direction:column;gap:16px;min-width:0}
+.cons-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;padding:16px 18px}
+.cons-head h2{font-family:var(--f-math);font-weight:400;font-size:clamp(21px,2.2vw,26px);line-height:1.3;margin:4px 0 0;text-wrap:balance}
+.cons-head .lbl{margin:0}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.steps li{display:flex;align-items:center;gap:8px;padding:5px 12px 5px 5px;border-radius:999px;border:1px solid var(--line);font-size:13px;font-weight:700;color:var(--ink-3);background:var(--sheet)}
+.steps .n{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--paper);border:1px solid var(--line);font:600 12px/1 var(--f-mono)}
+.steps li.cur{color:var(--ink);border-color:var(--accent);background:var(--accent-soft)}
+.steps li.cur .n{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.steps li.done{color:var(--ink-2)}
+.steps li.done .n{background:var(--ok);border-color:var(--ok);color:var(--sheet)}
+.vtab-wrap{overflow-x:auto;padding-bottom:2px;position:relative}
+@media (max-width:620px){.steps li:not(.cur) .sl{display:none}.steps li:not(.cur){padding-right:5px}}
+.vtab{display:grid;grid-auto-flow:column;grid-template-rows:auto auto;grid-auto-columns:minmax(76px,1fr);border:1px solid var(--ink-3);border-radius:6px;width:max-content;min-width:100%;overflow:hidden}
+.vtab>div{position:relative;display:flex;align-items:center;justify-content:center;min-height:54px;padding:8px 8px;font-family:var(--f-math);font-size:18px;border-right:1px solid var(--line);font-variant-numeric:tabular-nums;white-space:nowrap}
+.vtab>div:nth-child(odd){border-bottom:1px solid var(--ink-3)}
+.vtab>div:nth-last-child(-n+2){border-right:0}
+.vtab .vh{font-style:italic;color:var(--ink-2);background:var(--paper);border-right:1px solid var(--ink-3)}
+.vtab .cur{background:var(--accent-soft)}
+.vtab .pl{position:absolute;top:4px;left:7px;font-size:12.5px;font-style:italic;font-weight:600;color:var(--pen-1)}
+.vtab input{width:66px;font-family:var(--f-math);font-size:18px;text-align:center;padding:6px 4px;border:1.5px solid var(--line);border-radius:7px;background:var(--sheet);color:var(--ink)}
+.vtab input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px var(--accent-soft)}
+.vtab input.bad{border-color:var(--bad);background:var(--bad-soft)}
+.vtab .val.good{color:var(--ok)}
+.vtab .val.revealed{color:var(--ink-2);border-bottom:1.5px dashed var(--ink-3)}
+.cons-work{display:grid;grid-template-columns:minmax(0,1fr) minmax(270px,340px);gap:16px;align-items:start}
+.coach .lead{margin:0 0 10px;font-size:15.5px}
+.coach .target{font-family:var(--f-math);font-size:30px;margin:0 0 8px;line-height:1.2}
+.coach .target b{font-style:italic;color:var(--pen-1)}
+.coach .ctl-row{margin-top:14px}
+.fbk{border-radius:10px;padding:11px 13px;margin:12px 0 0;font-size:14px}
+.fbk.ok{background:var(--ok-soft)}
+.fbk.ko{background:var(--bad-soft)}
+.fbk p{margin:0}
+.fbk ul{margin:6px 0 0;padding-left:18px}
+.fbk li{margin:3px 0}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.linkish{appearance:none;border:0;background:none;color:var(--ink-3);text-decoration:underline;font-size:12.5px;cursor:pointer;padding:0;margin-top:10px}
+.pill{display:inline-block;padding:5px 11px;border-radius:999px;font-weight:700;font-size:13px}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.pill.mid{background:var(--accent-soft);color:var(--accent)}
+.pill.ko{background:var(--bad-soft);color:var(--bad)}
+.verdict{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 14px}
+.verdict .big-score{font-family:var(--f-math);font-size:40px;line-height:1;font-variant-numeric:tabular-nums}
+.metrics{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
+.metrics li{display:grid;grid-template-columns:1fr auto;gap:5px 10px;font-size:14px}
+.metrics b{font-variant-numeric:tabular-nums}
+.metrics small{font-weight:400;color:var(--ink-3)}
+.meter{grid-column:1/-1;height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent);border-radius:3px}
+.seen{margin:14px 0 0;padding:12px 14px;border-top:2px solid var(--bristol-rule);background:var(--paper);border-radius:0 0 8px 8px}
+.seen p{margin:0;font-size:14.5px}
+.legend-mini{display:flex;gap:6px 14px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-3);margin-top:12px}
+.legend-mini span{display:inline-flex;align-items:center;gap:6px}
+.legend-mini i{display:inline-block;width:16px;height:3px;border-radius:2px}
+@media (max-width:1180px){
+  .cons{grid-template-columns:minmax(0,1fr)}
+  .cons-pick{position:static}
+  #exos{flex-direction:row;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+  .exg{flex-direction:row;gap:6px}
+  .exg h4{display:none}
+  .exo{border-color:var(--line);background:var(--sheet)}
+  .exo .lv{display:inline-block}
+}
+@media (max-width:860px){
+  .cons-work{grid-template-columns:minmax(0,1fr)}
+  .coach{order:-1}
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1180px){
+  .explorer{grid-template-columns:minmax(0,1fr) minmax(300px,370px)}
+  .rail{grid-column:1/-1;position:relative;top:auto;flex-direction:row;overflow-x:auto;gap:6px;padding-bottom:6px;scrollbar-width:thin}
+  .grp{flex-direction:row;gap:6px}
+  .grp h3{display:none}
+  .fn{grid-template-columns:32px auto;border-color:var(--line);background:var(--sheet);padding:6px 12px 6px 8px}
+  .fn svg{width:32px;height:22px}
+  .fn .nm{white-space:nowrap}
+}
+@media (max-width:860px){
+  .explorer,.compare{grid-template-columns:minmax(0,1fr)}
+  .plot{aspect-ratio:1/1;max-height:66vh}
+  .qplot{aspect-ratio:4/3}
+}
+@media (max-width:520px){
+  .choices{grid-template-columns:minmax(0,1fr)}
+  .tabs{width:100%}
+  .tabs button{flex:1;padding:11px 4px;font-size:13px}
+  .big{font-size:24px}
+  .graph-bar{padding-left:12px}
+  .eq{font-size:17px}
+  .quiz{padding:16px}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <p class="eyebrow">Mathématiques · lycée</p>
+      <h1>Fonctions <em>de référence</em></h1>
+      <p class="lede">Dix fonctions à manipuler : leur courbe, leur dérivée, leurs variations et leurs limites. Bouge les curseurs, promène le point <i>M</i> sur la courbe, compare-les, construis-les toi-même, puis teste-toi.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Modes">
+      <button role="tab" id="tab-explorer" aria-controls="p-explorer" aria-selected="true">Explorer</button>
+      <button role="tab" id="tab-comparer" aria-controls="p-comparer" aria-selected="false" tabindex="-1">Comparer</button>
+      <button role="tab" id="tab-construire" aria-controls="p-construire" aria-selected="false" tabindex="-1">Construire</button>
+      <button role="tab" id="tab-quiz" aria-controls="p-quiz" aria-selected="false" tabindex="-1">Quiz</button>
+    </div>
+  </header>
+
+  <!-- ===================== EXPLORER ===================== -->
+  <section id="p-explorer" role="tabpanel" aria-labelledby="tab-explorer" class="explorer">
+    <nav class="rail" id="rail" aria-label="Choisir une fonction"></nav>
+
+    <div class="stage">
+      <div class="card graph-card">
+        <div class="graph-bar">
+          <div class="eq" id="ex-eq"></div>
+          <div class="zoom">
+            <button class="icon-btn" id="ex-zin" aria-label="Zoomer" title="Zoomer">+</button>
+            <button class="icon-btn" id="ex-zout" aria-label="Dézoomer" title="Dézoomer">−</button>
+            <button class="icon-btn" id="ex-fit" aria-label="Recentrer le repère" title="Recentrer"><svg viewBox="0 0 16 16"><path d="M2 6V2h4M14 6V2h-4M2 10v4h4M14 10v4h-4"/></svg></button>
+          </div>
+        </div>
+        <div class="plot"><canvas id="cv-ex" tabindex="0" aria-label="Courbe de la fonction"></canvas></div>
+        <p class="hint">Survole ou touche la courbe pour placer <i>M</i> · glisse pour déplacer le repère · Ctrl + molette pour zoomer · flèches ← → au clavier.</p>
+      </div>
+
+      <div class="controls">
+        <div class="card ctl">
+          <h3 class="lbl">Paramètres</h3>
+          <div id="params"></div>
+          <p class="none" id="noparams" hidden>Cette fonction n’a pas de paramètre. Promène le point <i>M</i> pour lire ses valeurs et sa tangente.</p>
+          <div class="ctl-row" id="reset-row"><button class="btn" id="reset">Réinitialiser</button></div>
+          <div class="sep"></div>
+          <h3 class="lbl">Afficher</h3>
+          <label class="tg"><input type="checkbox" id="t-tan" checked> Tangente en <i>M</i></label>
+          <label class="tg"><input type="checkbox" id="t-pts" checked> Points remarquables</label>
+          <label class="tg" id="t-ref-l"><input type="checkbox" id="t-ref"> Courbe de référence <span class="note">(pointillés)</span></label>
+        </div>
+        <div class="card ctl">
+          <h3 class="lbl">Point <i>M</i> sur la courbe</h3>
+          <div class="prm"><label for="m-x">x</label><input type="range" id="m-x"><output id="m-out" for="m-x"></output></div>
+          <dl class="ro" id="ro"></dl>
+        </div>
+      </div>
+    </div>
+
+    <article class="card fiche" id="fiche" aria-live="polite"></article>
+  </section>
+
+  <!-- ===================== COMPARER ===================== -->
+  <section id="p-comparer" role="tabpanel" aria-labelledby="tab-comparer" hidden>
+    <div class="compare">
+      <div class="cmp-side">
+        <div class="card ctl">
+          <h3 class="lbl">Comparaisons classiques</h3>
+          <div class="presets" id="presets"></div>
+        </div>
+        <div class="card ctl">
+          <h3 class="lbl">Ta sélection <span class="note">· 4 courbes au plus</span></h3>
+          <div class="chips" id="chips"></div>
+          <p class="msg" id="cmp-msg" aria-live="polite"></p>
+        </div>
+      </div>
+      <div class="cmp-main">
+        <div class="card graph-card">
+          <div class="graph-bar">
+            <div class="legend" id="legend"></div>
+            <div class="zoom">
+              <button class="icon-btn" id="cmp-zin" aria-label="Zoomer" title="Zoomer">+</button>
+              <button class="icon-btn" id="cmp-zout" aria-label="Dézoomer" title="Dézoomer">−</button>
+              <button class="icon-btn" id="cmp-fit" aria-label="Recentrer le repère" title="Recentrer"><svg viewBox="0 0 16 16"><path d="M2 6V2h4M14 6V2h-4M2 10v4h4M14 10v4h-4"/></svg></button>
+            </div>
+          </div>
+          <div class="plot"><canvas id="cv-cmp" tabindex="0" aria-label="Courbes comparées"></canvas></div>
+          <div class="cmp-ro" id="cmp-ro"></div>
+        </div>
+        <div class="card obs" id="obs"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONSTRUIRE ===================== -->
+  <section id="p-construire" role="tabpanel" aria-labelledby="tab-construire" hidden>
+    <div class="cons">
+      <aside class="card ctl cons-pick" aria-label="Choisir un exercice">
+        <h3 class="lbl">Exercices</h3>
+        <div id="exos"></div>
+      </aside>
+      <div class="cons-main">
+        <div class="card cons-head">
+          <div>
+            <p class="lbl" id="c-level"></p>
+            <h2 id="c-title"></h2>
+          </div>
+          <ol class="steps" id="c-steps" aria-label="Étapes"></ol>
+        </div>
+        <div class="card ctl">
+          <h3 class="lbl">Tableau de valeurs <span class="note" id="c-tabnote"></span></h3>
+          <div class="vtab-wrap"><div class="vtab" id="c-table"></div></div>
+        </div>
+        <div class="cons-work">
+          <div class="card graph-card">
+            <div class="plot"><canvas id="cv-cons" tabindex="0" aria-label="Repère pour construire la courbe"></canvas></div>
+          </div>
+          <div class="card ctl coach" id="c-coach" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== QUIZ ===================== -->
+  <section id="p-quiz" role="tabpanel" aria-labelledby="tab-quiz" hidden>
+    <div class="card quiz">
+      <div class="qhead">
+        <div class="prog" id="prog" aria-hidden="true"></div>
+        <div class="qscore" id="qscore"></div>
+      </div>
+      <div id="qbody">
+        <p class="qnum" id="qnum"></p>
+        <h2 class="qtext" id="qtext"></h2>
+        <div class="plot qplot" id="qplot"><canvas id="cv-quiz" aria-label="Courbe à reconnaître"></canvas></div>
+        <div class="choices" id="choices"></div>
+        <div class="feedback" id="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qend" id="qend" hidden></div>
+    </div>
+  </section>
+</div>
+
+<script>
+(() => {
+'use strict';
+const PI = Math.PI;
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+};
+
+/* ================= Mise en forme ================= */
+const MINUS = '−';
+function num(v, d = 2) {
+  if (v === Infinity) return '+∞';
+  if (v === -Infinity) return '−∞';
+  if (!Number.isFinite(v)) return '—';
+  const f = 10 ** d;
+  let r = Math.round(v * f) / f;
+  if (Math.abs(r) < 1e-12) r = 0;
+  let s = r.toFixed(d);
+  if (s.includes('.')) s = s.replace(/0+$/, '').replace(/\.$/, '');
+  return s.replace('-', MINUS).replace('.', ',');
+}
+const isRounded = (v, d = 2) => Math.abs(Math.round(v * 10 ** d) / 10 ** d - v) > 1e-9;
+const r2 = v => Math.round(v * 100) / 100;
+function gcd(a, b) { while (b) { [a, b] = [b, a % b]; } return a; }
+function piFrac(v) {
+  if (Math.abs(v) < 1e-12) return '0';
+  const r = v / PI;
+  for (let d = 1; d <= 48; d++) {
+    const n = Math.round(r * d);
+    if (n !== 0 && Math.abs(r * d - n) < 1e-7) {
+      const g = gcd(Math.abs(n), d), nn = n / g, dd = d / g, a = Math.abs(nn);
+      return (nn < 0 ? MINUS : '') + (a === 1 ? '' : a) + 'π' + (dd === 1 ? '' : '/' + dd);
+    }
+  }
+  return null;
+}
+const fx = (v, trig) => (trig && piFrac(v)) || num(v);
+const decimals = step => Math.max(0, Math.ceil(-Math.log10(step) - 1e-9));
+
+const X = '<i>x</i>';
+const sup = s => `<sup>${s}</sup>`;
+const frac = (a, b) => `<span class="frac"><span>${a}</span><span>${b}</span></span>`;
+const rt = s => `<span class="sqrt">√<span class="rad">${s}</span></span>`;
+const FX = '<i>f</i>(<i>x</i>)';
+const lim = (at, val, fn = FX) => `<span class="lim"><span>lim</span><small><i>x</i> → ${at}</small></span>${fn} = ${val}`;
+function poly(terms) {
+  let out = '';
+  for (const [c, v] of terms) {
+    if (Math.abs(c) < 1e-12) continue;
+    const a = Math.abs(c);
+    const coef = (v && Math.abs(a - 1) < 1e-12) ? '' : num(a);
+    const body = coef + v;
+    out += out ? (c < 0 ? ' − ' : ' + ') + body : (c < 0 ? MINUS : '') + body;
+  }
+  return out || '0';
+}
+function trigArg(w, j) {
+  let s = (Math.abs(w - 1) < 1e-12 ? '' : num(w)) + X;
+  if (j !== 0) s += (j > 0 ? ' + ' : ' − ') + piFrac(Math.abs(j) * PI / 12);
+  return (j !== 0 || Math.abs(w - 1) > 1e-12) ? `(${s})` : ' ' + s;
+}
+function trigH(name, p, coef) {
+  const a = Math.abs(coef);
+  return (coef < 0 ? MINUS : '') + (Math.abs(a - 1) < 1e-12 ? '' : num(a) + ' ') + name + trigArg(p.w, p.j);
+}
+function expH(k) {
+  if (Math.abs(k) < 1e-9) return '1';
+  const e = k === 1 ? X : k === -1 ? MINUS + X : num(k) + X;
+  return 'e' + sup(e);
+}
+const pt = (x, y, trig) => `${(isRounded(x) && !(trig && piFrac(x))) || isRounded(y) ? '≈ ' : ''}(${fx(x, trig)} ; ${num(y)})`;
+
+/* ================= Les fonctions ================= */
+const G_POLY = 'Polynômes', G_ALG = 'Inverse, racine, valeur absolue', G_EXP = 'Exponentielle et logarithme', G_TRIG = 'Trigonométrie';
+const PAR_EVEN = 'paire : courbe symétrique par rapport à l’axe des ordonnées';
+const PAR_ODD = 'impaire : courbe symétrique par rapport à l’origine O';
+
+function canon(a, al, be) {
+  const A = a === 1 ? '' : a === -1 ? MINUS : num(a);
+  const sq = Math.abs(al) < 1e-12 ? X + sup(2) : `(${X} ${al > 0 ? '−' : '+'} ${num(Math.abs(al))})${sup(2)}`;
+  const B = Math.abs(be) < 1e-12 ? '' : (be > 0 ? ' + ' : ' − ') + num(Math.abs(be));
+  return A + sq + B;
+}
+const factor = r => Math.abs(r) < 1e-12 ? X : `(${X} ${r > 0 ? '−' : '+'} ${num(Math.abs(r))})`;
+
+function trigParity(kind, j) {
+  const m = ((j % 12) + 12) % 12;
+  const zero = m === 0, half = m === 6;
+  if (kind === 'sin') return zero ? PAR_ODD : half ? PAR_EVEN : 'ni paire, ni impaire : le déphasage φ décale la courbe';
+  return zero ? PAR_EVEN : half ? PAR_ODD : 'ni paire, ni impaire : le déphasage φ décale la courbe';
+}
+
+const FUNCS = [
+{
+  id: 'affine', group: G_POLY, short: 'Affine', plain: 'x',
+  params: [{ k: 'a', lab: 'a', min: -4, max: 4, step: 0.25, def: 2 }, { k: 'b', lab: 'b', min: -5, max: 5, step: 0.5, def: 1 }],
+  ref: { a: 1, b: 0 },
+  f: (x, p) => p.a * x + p.b, df: (x, p) => p.a,
+  view: () => [-5, 5, -4, 5], m0: 1, gv: [-2, 2, -2, 2],
+  expr: p => poly([[p.a, X], [p.b, '']]),
+  info(p) {
+    const { a, b } = p;
+    const name = a === 0 ? 'Fonction constante' : b === 0 ? 'Fonction linéaire' : 'Fonction affine';
+    const lims = a === 0 ? [['−∞', num(b)], ['+∞', num(b)]] : [['−∞', a > 0 ? '−∞' : '+∞'], ['+∞', a > 0 ? '+∞' : '−∞']];
+    const table = a === 0
+      ? { xs: ['−∞', '+∞'], fp: { signs: ['0'], marks: ['', ''] }, vals: [{ v: num(b), l: 'mid' }, { v: num(b), l: 'mid' }] }
+      : { xs: ['−∞', '+∞'], fp: { signs: [a > 0 ? '+' : '−'], marks: ['', ''] }, vals: [{ v: a > 0 ? '−∞' : '+∞', l: a > 0 ? 'bot' : 'top' }, { v: a > 0 ? '+∞' : '−∞', l: a > 0 ? 'top' : 'bot' }] };
+    const pts = [{ x: 0, y: b, n: b === 0 ? 'O' : 'B', d: 'ordonnée à l’origine' }];
+    if (a !== 0 && b !== 0) pts.push({ x: -b / a, y: 0, n: 'A', d: 'la droite coupe l’axe des abscisses' });
+    const parity = a === 0 && b === 0 ? 'paire et impaire (fonction nulle)' : a === 0 ? 'paire (fonction constante)' : b === 0 ? PAR_ODD : 'ni paire, ni impaire';
+    return {
+      name, domain: 'ℝ', deriv: num(a), parity, lims, table, pts,
+      extra: [['Coefficient directeur', `<i>a</i> = ${num(a)}`], ['Ordonnée à l’origine', `<i>b</i> = ${num(b)}`]],
+      keep: [
+        `<i>a</i> est le coefficient directeur : quand <i>x</i> augmente de 1, <i>f</i>(<i>x</i>) ${a === 0 ? 'ne bouge pas' : a > 0 ? 'augmente de ' + num(a) : 'diminue de ' + num(-a)}.`,
+        `<i>b</i> est l’ordonnée à l’origine : la droite coupe l’axe des ordonnées en (0 ; ${num(b)}).`,
+        a !== 0 ? `<i>f</i>(<i>x</i>) s’annule en <i>x</i> = −<i>b</i>/<i>a</i> = ${num(-b / a)} et prend le signe de <i>a</i> à droite de cette valeur.` : 'Avec <i>a</i> = 0, la droite est horizontale.',
+        'La courbe est une droite : deux points suffisent pour la tracer.'
+      ],
+      sti: 'Loi d’Ohm <i>U</i> = <i>R</i> × <i>I</i> : la tension est une fonction linéaire de l’intensité, de coefficient <i>R</i>. La caractéristique d’un capteur (température → tension) est souvent affine.'
+    };
+  }
+},
+{
+  id: 'carre', group: G_POLY, short: 'Carré · 2nd degré', plain: 'x²',
+  params: [{ k: 'a', lab: 'a', min: -3, max: 3, step: 0.25, def: 1, nz: true }, { k: 'b', lab: 'b', min: -6, max: 6, step: 0.5, def: 0 }, { k: 'c', lab: 'c', min: -8, max: 8, step: 0.5, def: 0 }],
+  ref: { a: 1, b: 0, c: 0 },
+  f: (x, p) => p.a * x * x + p.b * x + p.c, df: (x, p) => 2 * p.a * x + p.b,
+  view: p => { const al = -p.b / (2 * p.a), be = p.c - p.b * p.b / (4 * p.a); return p.a > 0 ? [al - 5, al + 5, be - 2, be + 7] : [al - 5, al + 5, be - 7, be + 2]; },
+  m0: 1, gv: [-2, 2, -0.5, 3.6],
+  expr: p => poly([[p.a, X + sup(2)], [p.b, X], [p.c, '']]),
+  info(p) {
+    const { a, b, c } = p, al = -b / (2 * a), be = c - b * b / (4 * a), D = b * b - 4 * a * c, up = a > 0;
+    const pure = a === 1 && b === 0 && c === 0;
+    let roots = [];
+    if (D > 1e-12) { const s = Math.sqrt(D); roots = [(-b - s) / (2 * a), (-b + s) / (2 * a)].sort((u, v) => u - v); }
+    else if (Math.abs(D) <= 1e-12) roots = [al];
+    const pts = [{ x: al, y: be, n: 'S', d: up ? 'sommet, minimum de la fonction' : 'sommet, maximum de la fonction' }];
+    if (roots.length === 2) roots.forEach((r, i) => pts.push({ x: r, y: 0, n: i ? 'B' : 'A', d: 'racine' }));
+    if (!pts.some(q => Math.abs(q.x) < 1e-9 && Math.abs(q.y - c) < 1e-9)) pts.push({ x: 0, y: c, n: 'C', d: 'intersection avec l’axe des ordonnées' });
+    const rootTxt = roots.length === 2 ? `${X}<sub>1</sub> ${isRounded(roots[0]) ? '≈' : '='} ${num(roots[0])} et ${X}<sub>2</sub> ${isRounded(roots[1]) ? '≈' : '='} ${num(roots[1])}`
+      : roots.length === 1 ? `une racine double : ${X}<sub>0</sub> = ${num(al)}` : 'aucune racine réelle';
+    const extra = [
+      ['Sommet', `S${pt(al, be)}`],
+      ['Discriminant', `Δ = <i>b</i>${sup(2)} − 4<i>ac</i> = ${num(D)}`],
+      ['Racines', rootTxt],
+      ['Forme canonique', canon(a, al, be)]
+    ];
+    if (roots.length) {
+      const A = a === 1 ? '' : a === -1 ? MINUS : num(a);
+      const rs = roots.length === 2 ? [...roots].sort((u, v) => (Math.abs(u) < 1e-12 ? -1 : 0) - (Math.abs(v) < 1e-12 ? -1 : 0)) : roots;
+      const fac = roots.length === 2 ? A + factor(rs[0]) + factor(rs[1]) : A + factor(al) + sup(2);
+      extra.push(['Forme factorisée', fac + (roots.some(r => isRounded(r)) ? ' <span class="note">(valeurs arrondies)</span>' : '')]);
+    }
+    const sgn = D > 1e-12 ? `<i>f</i>(<i>x</i>) a le signe de <i>a</i> à l’extérieur des racines, le signe contraire entre elles.`
+      : Math.abs(D) <= 1e-12 ? `<i>f</i>(<i>x</i>) a le signe de <i>a</i>, sauf en ${num(al)} où il s’annule.` : `<i>f</i>(<i>x</i>) a toujours le signe de <i>a</i> : la parabole ne touche pas l’axe des abscisses.`;
+    return {
+      name: pure ? 'Fonction carré' : 'Polynôme du second degré',
+      domain: 'ℝ', deriv: poly([[2 * a, X], [b, '']]),
+      parity: b === 0 ? PAR_EVEN : `ni paire, ni impaire ; la parabole est symétrique par rapport à la droite <i>x</i> = ${num(al)}`,
+      lims: up ? [['−∞', '+∞'], ['+∞', '+∞']] : [['−∞', '−∞'], ['+∞', '−∞']],
+      table: { xs: ['−∞', num(al), '+∞'], fp: { signs: [up ? '−' : '+', up ? '+' : '−'], marks: ['', '0', ''] }, vals: [{ v: up ? '+∞' : '−∞', l: up ? 'top' : 'bot' }, { v: num(be), l: up ? 'bot' : 'top' }, { v: up ? '+∞' : '−∞', l: up ? 'top' : 'bot' }] },
+      pts, extra,
+      keep: [
+        `La courbe est une parabole tournée vers ${up ? 'le haut' : 'le bas'}, car <i>a</i> ${up ? '>' : '<'} 0.`,
+        `Sommet S(α ; β) avec α = −<i>b</i>/(2<i>a</i>) et β = <i>f</i>(α).`,
+        `Δ > 0 : deux racines ; Δ = 0 : une racine double ; Δ < 0 : aucune. Ici Δ ${D > 1e-12 ? '> 0' : Math.abs(D) <= 1e-12 ? '= 0' : '< 0'}.`,
+        pure ? '<i>x</i>² ≥ 0 pour tout réel <i>x</i>, et (−<i>x</i>)² = <i>x</i>².' : sgn
+      ],
+      sti: 'Énergie cinétique <i>E</i><sub>c</sub> = ½ <i>m v</i>² et puissance dissipée par effet Joule <i>P</i> = <i>R I</i>² : deux fonctions carré. La trajectoire d’un objet lancé est une parabole.'
+    };
+  }
+},
+{
+  id: 'cube', group: G_POLY, short: 'Cube', plain: 'x³',
+  params: [{ k: 'a', lab: 'a', min: -3, max: 3, step: 0.25, def: 1, nz: true }],
+  ref: { a: 1 },
+  f: (x, p) => p.a * x * x * x, df: (x, p) => 3 * p.a * x * x,
+  view: () => [-3, 3, -4, 4], m0: 1, gv: [-1.6, 1.6, -2.2, 2.2],
+  expr: p => poly([[p.a, X + sup(3)]]),
+  info(p) {
+    const a = p.a, up = a > 0;
+    return {
+      name: 'Fonction cube', domain: 'ℝ', deriv: poly([[3 * a, X + sup(2)]]), parity: PAR_ODD,
+      lims: [['−∞', up ? '−∞' : '+∞'], ['+∞', up ? '+∞' : '−∞']],
+      table: { xs: ['−∞', '0', '+∞'], fp: { signs: [up ? '+' : '−', up ? '+' : '−'], marks: ['', '0', ''] }, vals: [{ v: up ? '−∞' : '+∞', l: up ? 'bot' : 'top' }, { v: '0', l: 'mid' }, { v: up ? '+∞' : '−∞', l: up ? 'top' : 'bot' }] },
+      pts: [{ x: 0, y: 0, n: 'O', d: 'tangente horizontale, mais pas d’extremum' }, { x: 1, y: a, n: 'A', d: '' }, { x: -1, y: -a, n: 'A′', d: 'symétrique de A par rapport à O' }],
+      keep: [
+        up ? '<i>x</i>³ est du signe de <i>x</i>.' : 'Avec <i>a</i> < 0, <i>f</i>(<i>x</i>) est du signe contraire de <i>x</i>.',
+        'En 0, la dérivée s’annule sans changer de signe : la tangente est horizontale mais la courbe la traverse (point d’inflexion).',
+        'Sur [0 ; 1], <i>x</i>³ ≤ <i>x</i>² ≤ <i>x</i> ; au-delà de 1, l’ordre s’inverse.',
+        '(−<i>x</i>)³ = −<i>x</i>³.'
+      ],
+      sti: 'Le volume d’un cube d’arête <i>a</i> vaut <i>a</i>³. La puissance du vent captée par une éolienne varie comme le cube de sa vitesse : <i>P</i> = ½ ρ <i>S v</i>³.'
+    };
+  }
+},
+{
+  id: 'inverse', group: G_ALG, short: 'Inverse', plain: '1/x', poles: [0],
+  params: [{ k: 'k', lab: 'k', min: -5, max: 5, step: 0.5, def: 1, nz: true }],
+  ref: { k: 1 },
+  f: (x, p) => p.k / x, df: (x, p) => -p.k / (x * x),
+  view: () => [-5, 5, -4, 4], m0: 1, gv: [-2.6, 2.6, -2.6, 2.6],
+  expr: p => (p.k < 0 ? MINUS : '') + frac(num(Math.abs(p.k)), X),
+  info(p) {
+    const k = p.k, pos = k > 0;
+    return {
+      name: 'Fonction inverse', domain: 'ℝ* = ]−∞ ; 0[ ∪ ]0 ; +∞[',
+      deriv: (pos ? MINUS : '') + frac(num(Math.abs(k)), X + sup(2)), parity: PAR_ODD,
+      lims: [['−∞', '0'], ['0' + sup(MINUS), pos ? '−∞' : '+∞'], ['0' + sup('+'), pos ? '+∞' : '−∞'], ['+∞', '0']],
+      table: { xs: ['−∞', '0', '+∞'], fp: { signs: [pos ? '−' : '+', pos ? '−' : '+'], marks: ['', '', ''] }, dbar: [false, true, false],
+        vals: [{ v: '0', l: pos ? 'top' : 'bot' }, { left: { v: pos ? '−∞' : '+∞', l: pos ? 'bot' : 'top' }, right: { v: pos ? '+∞' : '−∞', l: pos ? 'top' : 'bot' } }, { v: '0', l: pos ? 'bot' : 'top' }] },
+      pts: [{ x: 1, y: k, n: 'A', d: '' }, { x: -1, y: -k, n: 'A′', d: 'symétrique de A par rapport à O' }],
+      keep: [
+        'La courbe est une hyperbole : deux branches séparées.',
+        'Les deux axes sont asymptotes : la courbe s’en approche sans jamais les toucher.',
+        pos ? 'Décroissante sur ]−∞ ; 0[ et sur ]0 ; +∞[, mais pas sur ℝ* tout entier : −1 < 1 et pourtant <i>f</i>(−1) < <i>f</i>(1).'
+            : 'Croissante sur ]−∞ ; 0[ et sur ]0 ; +∞[, mais pas sur ℝ* tout entier.',
+        'On ne divise jamais par 0 : 0 n’a pas d’image.'
+      ],
+      sti: 'À tension fixée, <i>I</i> = <i>U</i>/<i>R</i> : l’intensité est inversement proportionnelle à la résistance. De même, la fréquence est l’inverse de la période : <i>f</i> = 1/<i>T</i>.'
+    };
+  }
+},
+{
+  id: 'racine', group: G_ALG, short: 'Racine carrée', plain: '√x', domain: [0, Infinity],
+  params: [], ref: {},
+  f: x => x < 0 ? NaN : Math.sqrt(x), df: x => x > 0 ? 1 / (2 * Math.sqrt(x)) : NaN,
+  nd: x => Math.abs(x) < 1e-9 ? 'En 0, la tangente est verticale : √<i>x</i> n’est pas dérivable en 0.' : null,
+  view: () => [-1, 9, -1.5, 4.5], m0: 1, gv: [-0.3, 4, -0.3, 2.3], mMin: 0,
+  expr: () => rt(X),
+  info: () => ({
+    name: 'Fonction racine carrée', domain: '[0 ; +∞[',
+    deriv: frac('1', '2' + rt(X)) + ' <span class="note">sur ]0 ; +∞[</span>',
+    parity: 'ni paire, ni impaire : [0 ; +∞[ n’est pas symétrique par rapport à 0',
+    lims: [['+∞', '+∞']], limNote: '<i>f</i>(0) = 0 : la courbe part de l’origine.',
+    table: { xs: ['0', '+∞'], fp: { signs: ['+'], marks: ['||', ''] }, vals: [{ v: '0', l: 'bot' }, { v: '+∞', l: 'top' }] },
+    pts: [{ x: 0, y: 0, n: 'O', d: 'tangente verticale' }, { x: 1, y: 1, n: 'A', d: '√1 = 1' }, { x: 4, y: 2, n: 'B', d: '√4 = 2' }],
+    keep: [
+      '√<i>x</i> est le nombre positif dont le carré vaut <i>x</i> : (√<i>x</i>)² = <i>x</i>.',
+      'Tangente verticale à l’origine : la fonction n’est pas dérivable en 0.',
+      'Sur [0 ; 1], √<i>x</i> ≥ <i>x</i> ; au-delà de 1, √<i>x</i> ≤ <i>x</i>.',
+      '√(<i>ab</i>) = √<i>a</i> × √<i>b</i>, mais √(<i>a</i> + <i>b</i>) ≠ √<i>a</i> + √<i>b</i>.'
+    ],
+    sti: 'Vitesse d’un objet après une chute libre de hauteur <i>h</i> : <i>v</i> = √(2<i>gh</i>). Période d’un pendule simple : <i>T</i> = 2π √(<i>L</i>/<i>g</i>).'
+  })
+},
+{
+  id: 'abs', group: G_ALG, short: 'Valeur absolue', plain: '|x|',
+  params: [], ref: {},
+  f: x => Math.abs(x), df: x => x > 0 ? 1 : x < 0 ? -1 : NaN,
+  nd: x => Math.abs(x) < 1e-9 ? 'En 0, la courbe forme un angle : |<i>x</i>| n’est pas dérivable en 0.' : null,
+  view: () => [-5, 5, -1.5, 5.5], m0: 1, gv: [-2, 2, -0.4, 2.4],
+  expr: () => `|${X}|`,
+  info: () => ({
+    name: 'Fonction valeur absolue', domain: 'ℝ',
+    deriv: `−1 si ${X} < 0 ; 1 si ${X} > 0 <span class="note">(non dérivable en 0)</span>`, parity: PAR_EVEN,
+    lims: [['−∞', '+∞'], ['+∞', '+∞']],
+    table: { xs: ['−∞', '0', '+∞'], fp: { signs: ['−', '+'], marks: ['', '||', ''] }, vals: [{ v: '+∞', l: 'top' }, { v: '0', l: 'bot' }, { v: '+∞', l: 'top' }] },
+    pts: [{ x: 0, y: 0, n: 'O', d: 'point anguleux, minimum' }],
+    keep: [
+      '|<i>x</i>| = <i>x</i> si <i>x</i> ≥ 0, et |<i>x</i>| = −<i>x</i> si <i>x</i> < 0.',
+      '|<i>a</i> − <i>b</i>| est la distance entre <i>a</i> et <i>b</i> sur la droite des réels.',
+      'La courbe est formée de deux demi-droites : <i>y</i> = −<i>x</i> à gauche, <i>y</i> = <i>x</i> à droite.',
+      'En 0, deux demi-tangentes différentes : il n’y a pas de tangente.'
+    ],
+    sti: 'Redressement double alternance : la tension |sin(ω<i>t</i>)| ne prend que des valeurs positives. En mesure, l’écart |valeur mesurée − valeur attendue| est une valeur absolue.'
+  })
+},
+{
+  id: 'exp', group: G_EXP, short: 'Exponentielle', plain: 'eˣ',
+  params: [{ k: 'k', lab: 'k', min: -2, max: 2, step: 0.1, def: 1 }],
+  ref: { k: 1 },
+  f: (x, p) => Math.exp(p.k * x), df: (x, p) => p.k * Math.exp(p.k * x),
+  view: () => [-4, 4, -1, 6], m0: 0, gv: [-2.6, 1.6, -0.4, 4],
+  expr: p => expH(p.k),
+  info(p) {
+    const k = p.k, z = Math.abs(k) < 1e-9, up = k > 0;
+    const table = z ? { xs: ['−∞', '+∞'], fp: { signs: ['0'], marks: ['', ''] }, vals: [{ v: '1', l: 'mid' }, { v: '1', l: 'mid' }] }
+      : up ? { xs: ['−∞', '+∞'], fp: { signs: ['+'], marks: ['', ''] }, vals: [{ v: '0', l: 'bot' }, { v: '+∞', l: 'top' }] }
+      : { xs: ['−∞', '+∞'], fp: { signs: ['−'], marks: ['', ''] }, vals: [{ v: '+∞', l: 'top' }, { v: '0', l: 'bot' }] };
+    const pts = [{ x: 0, y: 1, n: 'A', d: 'e⁰ = 1 : toutes ces courbes passent par (0 ; 1)' }];
+    if (k === 1) pts.push({ x: 1, y: Math.E, n: 'B', d: 'e¹ = e ≈ 2,718' });
+    const keep = [
+      k === 1 ? 'exp est égale à sa dérivée : (e<sup><i>x</i></sup>)′ = e<sup><i>x</i></sup>.' : '(e<sup><i>kx</i></sup>)′ = <i>k</i> e<sup><i>kx</i></sup>.',
+      'e<sup><i>x</i></sup> > 0 pour tout réel <i>x</i> : la courbe reste au-dessus de l’axe des abscisses.',
+      'e<sup>0</sup> = 1 ; e<sup><i>a</i>+<i>b</i></sup> = e<sup><i>a</i></sup> × e<sup><i>b</i></sup> ; e<sup>−<i>a</i></sup> = 1/e<sup><i>a</i></sup>.',
+      `La tangente en 0 a pour équation <i>y</i> = ${poly([[k, X], [1, '']])}.`
+    ];
+    if (!z) keep.push(`L’axe des abscisses (<i>y</i> = 0) est asymptote en ${up ? '−∞' : '+∞'}.`);
+    return {
+      name: k === 1 ? 'Fonction exponentielle' : z ? 'Fonction constante (k = 0)' : 'Fonction exponentielle de paramètre k',
+      domain: 'ℝ', deriv: z ? '0' : (k === 1 ? '' : k === -1 ? MINUS : num(k) + '&thinsp;') + expH(k),
+      parity: z ? 'paire (fonction constante)' : 'ni paire, ni impaire',
+      lims: z ? [['−∞', '1'], ['+∞', '1']] : up ? [['−∞', '0'], ['+∞', '+∞']] : [['−∞', '+∞'], ['+∞', '0']],
+      table, pts, keep,
+      sti: 'Décharge d’un condensateur : <i>u</i>(<i>t</i>) = <i>E</i> e<sup>−<i>t</i>/τ</sup>. Décroissance radioactive : <i>N</i>(<i>t</i>) = <i>N</i><sub>0</sub> e<sup>−λ<i>t</i></sup>. Ce sont des exponentielles avec <i>k</i> < 0.'
+    };
+  }
+},
+{
+  id: 'ln', group: G_EXP, short: 'Logarithme népérien', plain: 'ln x', domain: [0, Infinity],
+  params: [], ref: {},
+  f: x => x > 0 ? Math.log(x) : NaN, df: x => x > 0 ? 1 / x : NaN,
+  view: () => [-1, 8, -4, 3], m0: 1, gv: [-0.2, 4.6, -2.2, 1.8], mMin: 0.05,
+  expr: () => 'ln ' + X,
+  info: () => ({
+    name: 'Fonction logarithme népérien', domain: ']0 ; +∞[', deriv: frac('1', X),
+    parity: 'ni paire, ni impaire : ]0 ; +∞[ n’est pas symétrique par rapport à 0',
+    lims: [['0' + sup('+'), '−∞'], ['+∞', '+∞']],
+    table: { xs: ['0', '+∞'], fp: { signs: ['+'], marks: ['', ''] }, dbar: [true, false], vals: [{ right: { v: '−∞', l: 'bot' } }, { v: '+∞', l: 'top' }] },
+    pts: [{ x: 1, y: 0, n: 'A', d: 'ln 1 = 0' }, { x: Math.E, y: 1, n: 'B', d: 'ln e = 1 (e ≈ 2,718)' }],
+    keep: [
+      'ln est la réciproque de exp : pour <i>x</i> > 0, <i>y</i> = ln <i>x</i> ⟺ <i>x</i> = e<sup><i>y</i></sup>.',
+      'ln 1 = 0 et ln e = 1.',
+      'ln(<i>ab</i>) = ln <i>a</i> + ln <i>b</i> ; ln(<i>a</i>/<i>b</i>) = ln <i>a</i> − ln <i>b</i> ; ln(<i>a</i><sup><i>n</i></sup>) = <i>n</i> ln <i>a</i>.',
+      'ln <i>x</i> < 0 sur ]0 ; 1[ et ln <i>x</i> > 0 sur ]1 ; +∞[.',
+      'L’axe des ordonnées est asymptote : la courbe plonge vers −∞ près de 0.'
+    ],
+    sti: 'Les niveaux sonores en décibels utilisent le logarithme décimal log <i>x</i> = ln <i>x</i> / ln 10 : <i>L</i> = 10 log(<i>I</i>/<i>I</i><sub>0</sub>). Les diagrammes de Bode sont tracés en échelle logarithmique.'
+  })
+},
+{
+  id: 'sin', group: G_TRIG, short: 'Sinus', plain: 'sin x', trig: true,
+  params: [{ k: 'A', lab: 'A', min: 0.5, max: 4, step: 0.5, def: 1 }, { k: 'w', lab: 'ω', min: 0.5, max: 4, step: 0.5, def: 1 }, { k: 'j', lab: 'φ', min: -12, max: 12, step: 1, def: 0, pi: true }],
+  ref: { A: 1, w: 1, j: 0 },
+  f: (x, p) => p.A * Math.sin(p.w * x + p.j * PI / 12), df: (x, p) => p.A * p.w * Math.cos(p.w * x + p.j * PI / 12),
+  view: p => { const h = Math.max(1.6, p.A + 0.6); return [-2 * PI, 2 * PI, -h, h]; }, m0: 0, gv: [-PI - 0.3, PI + 0.3, -1.4, 1.4],
+  expr: p => trigH('sin', p, p.A),
+  info(p) {
+    const { A, w, j } = p, T = 2 * PI / w, x0 = -(j * PI / 12) / w, pure = A === 1 && w === 1 && j === 0;
+    return {
+      name: pure ? 'Fonction sinus' : 'Fonction sinusoïdale', domain: 'ℝ',
+      deriv: trigH('cos', p, A * w), parity: trigParity('sin', j),
+      extra: [['Période', `<i>T</i> = 2π/ω = ${fx(T, true)}`], ['Amplitude', `<i>A</i> = ${num(A)}`], ['Pulsation', `ω = ${num(w)}`], ['Déphasage', `φ = ${piFrac(j * PI / 12)}`]],
+      limNote: `Pas de limite en −∞ ni en +∞ : la fonction oscille sans fin entre ${num(-A)} et ${num(A)}.`,
+      table: { xs: [x0, x0 + T / 4, x0 + 3 * T / 4, x0 + T].map(v => fx(v, true)), fp: { signs: ['+', '−', '+'], marks: ['', '0', '0', ''] }, vals: [{ v: '0', l: 'mid' }, { v: num(A), l: 'top' }, { v: num(-A), l: 'bot' }, { v: '0', l: 'mid' }] },
+      tableNote: 'sur une période',
+      pts: [{ x: x0, y: 0, n: Math.abs(x0) < 1e-12 ? 'O' : 'C', d: 'début de la période étudiée' }, { x: x0 + T / 4, y: A, n: 'A', d: 'maximum' }, { x: x0 + 3 * T / 4, y: -A, n: 'B', d: 'minimum' }],
+      ptsTrig: true,
+      keep: [
+        pure ? '−1 ≤ sin <i>x</i> ≤ 1 pour tout réel <i>x</i>.' : `${num(-A)} ≤ <i>f</i>(<i>x</i>) ≤ ${num(A)} : l’amplitude vaut <i>A</i>.`,
+        `<i>f</i>(<i>x</i> + <i>T</i>) = <i>f</i>(<i>x</i>) : on étudie la fonction sur une seule période.`,
+        'sin(−<i>x</i>) = −sin <i>x</i> : la fonction sinus est impaire.',
+        'Période <i>T</i> = 2π/ω, fréquence <i>f</i> = 1/<i>T</i> = ω/(2π).',
+        'À connaître : sin 0 = 0, sin(π/2) = 1, sin π = 0.'
+      ],
+      sti: 'Tension du secteur : <i>u</i>(<i>t</i>) = 230√2 sin(100π<i>t</i>). Amplitude ≈ 325 V, pulsation 100π rad/s, période 20 ms, fréquence 50 Hz.'
+    };
+  }
+},
+{
+  id: 'cos', group: G_TRIG, short: 'Cosinus', plain: 'cos x', trig: true,
+  params: [{ k: 'A', lab: 'A', min: 0.5, max: 4, step: 0.5, def: 1 }, { k: 'w', lab: 'ω', min: 0.5, max: 4, step: 0.5, def: 1 }, { k: 'j', lab: 'φ', min: -12, max: 12, step: 1, def: 0, pi: true }],
+  ref: { A: 1, w: 1, j: 0 },
+  f: (x, p) => p.A * Math.cos(p.w * x + p.j * PI / 12), df: (x, p) => -p.A * p.w * Math.sin(p.w * x + p.j * PI / 12),
+  view: p => { const h = Math.max(1.6, p.A + 0.6); return [-2 * PI, 2 * PI, -h, h]; }, m0: PI / 2, gv: [-PI - 0.3, PI + 0.3, -1.4, 1.4],
+  expr: p => trigH('cos', p, p.A),
+  info(p) {
+    const { A, w, j } = p, T = 2 * PI / w, x0 = -(j * PI / 12) / w, pure = A === 1 && w === 1 && j === 0;
+    return {
+      name: pure ? 'Fonction cosinus' : 'Fonction sinusoïdale (cosinus)', domain: 'ℝ',
+      deriv: trigH('sin', p, -A * w), parity: trigParity('cos', j),
+      extra: [['Période', `<i>T</i> = 2π/ω = ${fx(T, true)}`], ['Amplitude', `<i>A</i> = ${num(A)}`], ['Pulsation', `ω = ${num(w)}`], ['Déphasage', `φ = ${piFrac(j * PI / 12)}`]],
+      limNote: `Pas de limite en −∞ ni en +∞ : la fonction oscille sans fin entre ${num(-A)} et ${num(A)}.`,
+      table: { xs: [x0, x0 + T / 2, x0 + T].map(v => fx(v, true)), fp: { signs: ['−', '+'], marks: ['0', '0', '0'] }, vals: [{ v: num(A), l: 'top' }, { v: num(-A), l: 'bot' }, { v: num(A), l: 'top' }] },
+      tableNote: 'sur une période',
+      pts: [{ x: x0, y: A, n: 'A', d: 'maximum' }, { x: x0 + T / 4, y: 0, n: 'C', d: 'la courbe coupe l’axe des abscisses' }, { x: x0 + T / 2, y: -A, n: 'B', d: 'minimum' }],
+      ptsTrig: true,
+      keep: [
+        pure ? '−1 ≤ cos <i>x</i> ≤ 1 pour tout réel <i>x</i>.' : `${num(-A)} ≤ <i>f</i>(<i>x</i>) ≤ ${num(A)} : l’amplitude vaut <i>A</i>.`,
+        'cos(−<i>x</i>) = cos <i>x</i> : la fonction cosinus est paire.',
+        'cos²<i>x</i> + sin²<i>x</i> = 1 pour tout réel <i>x</i>.',
+        'cos <i>x</i> = sin(<i>x</i> + π/2) : la courbe de cos est celle de sin décalée de π/2 vers la gauche.',
+        'À connaître : cos 0 = 1, cos(π/2) = 0, cos π = −1.'
+      ],
+      sti: 'Courant alternatif : <i>i</i>(<i>t</i>) = <i>I</i>√2 cos(ω<i>t</i> + φ). Le déphasage φ mesure le décalage entre le courant et la tension, par exemple dans un circuit RC ou RL.'
+    };
+  }
+}
+];
+const FN = Object.fromEntries(FUNCS.map(f => [f.id, f]));
+const defaults = fn => Object.fromEntries(fn.params.map(p => [p.k, p.def]));
+const sameParams = (a, b) => Object.keys(b).every(k => Math.abs(a[k] - b[k]) < 1e-9);
+
+/* ================= Thème (lu depuis les tokens CSS) ================= */
+let TH = {};
+function readTheme() {
+  const cs = getComputedStyle(document.documentElement), g = n => cs.getPropertyValue(n).trim();
+  TH = { board: g('--board'), ink: g('--ink'), ink2: g('--ink-2'), ink3: g('--ink-3'), minor: g('--mm-minor'), major: g('--mm-major'), axis: g('--axis'), ghost: g('--ghost'), ok: g('--ok'), bad: g('--bad'), pens: [g('--pen-1'), g('--pen-2'), g('--pen-3'), g('--pen-4')] };
+}
+readTheme();
+const MONO = '"JetBrains Mono", ui-monospace, Menlo, monospace';
+const MATH = '"STIX Two Text", "Cambria Math", Cambria, "Times New Roman", serif';
+
+/* ================= Repère (canvas) ================= */
+const PLOTS = [];
+class Plot {
+  constructor(canvas, opt = {}) {
+    this.c = canvas; this.ctx = canvas.getContext('2d');
+    this.interactive = opt.interactive !== false;
+    this.cx = 0; this.cy = 0; this.kx = 40; this.ky = 40; this.w = 0; this.h = 0; this.dpr = 1;
+    this.rect = null; this.ortho = true; this.touched = false; this.pi = false;
+    this.curves = []; this.points = []; this.lines = []; this.track = null; this.onTrack = null;
+    if (this.interactive) this.bind(); else if (!opt.board) canvas.classList.add('static');
+    PLOTS.push(this);
+    if (window.ResizeObserver) new ResizeObserver(() => this.resize()).observe(canvas);
+    else window.addEventListener('resize', () => this.resize());
+    this.resize();
+  }
+  resize() {
+    const r = this.c.getBoundingClientRect();
+    if (r.width < 2 || r.height < 2) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 3);
+    this.w = r.width; this.h = r.height; this.dpr = dpr;
+    this.c.width = Math.round(r.width * dpr); this.c.height = Math.round(r.height * dpr);
+    if (this.rect && !this.touched) this.applyFit();
+    this.draw();
+  }
+  fit(rect, ortho = true) { this.rect = rect; this.ortho = ortho; this.touched = false; if (this.w) { this.applyFit(); this.draw(); } }
+  applyFit() {
+    const [x0, x1, y0, y1] = this.rect;
+    let kx = this.w / (x1 - x0), ky = this.h / (y1 - y0);
+    if (this.ortho) { const k = Math.min(kx, ky); kx = ky = k; }
+    this.kx = kx; this.ky = ky; this.cx = (x0 + x1) / 2; this.cy = (y0 + y1) / 2;
+  }
+  X(x) { return this.w / 2 + (x - this.cx) * this.kx; }
+  Y(y) { return this.h / 2 - (y - this.cy) * this.ky; }
+  ix(px) { return this.cx + (px - this.w / 2) / this.kx; }
+  iy(py) { return this.cy - (py - this.h / 2) / this.ky; }
+  get x0() { return this.ix(0); } get x1() { return this.ix(this.w); }
+  get y0() { return this.iy(this.h); } get y1() { return this.iy(0); }
+  zoom(f, px = this.w / 2, py = this.h / 2) {
+    const x = this.ix(px), y = this.iy(py);
+    const kx = this.kx * f, ky = this.ky * f;
+    if (kx < 0.4 || kx > 4000) return;
+    this.kx = kx; this.ky = ky;
+    this.cx = x - (px - this.w / 2) / this.kx; this.cy = y + (py - this.h / 2) / this.ky;
+    this.touched = true; this.draw();
+  }
+  bind() {
+    const c = this.c; let drag = null;
+    const local = e => { const r = c.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+    c.addEventListener('pointerdown', e => {
+      if (e.button > 0) return;
+      try { c.setPointerCapture(e.pointerId); } catch (_) {}
+      drag = { sx: e.clientX, sy: e.clientY, cx: this.cx, cy: this.cy, moved: false };
+    });
+    c.addEventListener('pointermove', e => {
+      if (drag) {
+        const dx = e.clientX - drag.sx, dy = e.clientY - drag.sy;
+        if (!drag.moved && Math.hypot(dx, dy) > 5) { drag.moved = true; c.classList.add('grabbing'); }
+        if (drag.moved) { this.cx = drag.cx - dx / this.kx; this.cy = drag.cy + dy / this.ky; this.touched = true; this.draw(); }
+        return;
+      }
+      if (e.pointerType === 'mouse') { const [px] = local(e); this.onTrack && this.onTrack(this.ix(px)); }
+    });
+    const end = e => {
+      if (drag && !drag.moved && e.type === 'pointerup') { const [px] = local(e); this.onTrack && this.onTrack(this.ix(px)); }
+      drag = null; c.classList.remove('grabbing');
+    };
+    c.addEventListener('pointerup', end);
+    c.addEventListener('pointercancel', end);
+    c.addEventListener('wheel', e => {
+      if (!(e.ctrlKey || e.metaKey)) return;
+      e.preventDefault();
+      const [px, py] = local(e);
+      this.zoom(Math.exp(-e.deltaY * 0.002), px, py);
+    }, { passive: false });
+    c.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        if (!this.track) return;
+        e.preventDefault();
+        const step = (this.x1 - this.x0) / 100;
+        this.onTrack && this.onTrack(this.track.x + (e.key === 'ArrowRight' ? step : -step));
+      } else if (e.key === '+' || e.key === '=') { e.preventDefault(); this.zoom(1.25); }
+      else if (e.key === '-') { e.preventDefault(); this.zoom(0.8); }
+    });
+  }
+  steps(k, pi) {
+    if (pi) {
+      const c = [PI / 12, PI / 6, PI / 4, PI / 3, PI / 2, PI, 2 * PI, 4 * PI, 8 * PI, 16 * PI, 32 * PI];
+      const M = c.find(s => s * k >= 58) || c[c.length - 1];
+      return [M, M / 2];
+    }
+    const target = 64 / k, p = 10 ** Math.floor(Math.log10(target)), m = target / p;
+    const M = (m <= 1 ? 1 : m <= 2 ? 2 : m <= 5 ? 5 : 10) * p;
+    const mant = Math.round(M / 10 ** Math.floor(Math.log10(M) + 1e-9));
+    return [M, M / (mant === 2 ? 4 : 5)];
+  }
+  halo(t, x, y, color) {
+    const ctx = this.ctx;
+    ctx.lineWidth = 4; ctx.lineJoin = 'round'; ctx.strokeStyle = TH.board; ctx.strokeText(t, x, y);
+    ctx.fillStyle = color || TH.ink2; ctx.fillText(t, x, y);
+  }
+  draw() {
+    if (!this.w) return;
+    const ctx = this.ctx, w = this.w, h = this.h;
+    ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
+    ctx.fillStyle = TH.board; ctx.fillRect(0, 0, w, h);
+    this.gx = this.steps(this.kx, this.pi); this.gy = this.steps(this.ky, false);
+    this.drawGrid(); this.drawAxes();
+    for (const l of this.lines) this.drawLine(l);
+    this.curves.forEach((cv, i) => this.drawCurve(cv, i));
+    for (const p of this.points) this.drawPoint(p);
+    if (this.track) this.drawTrack();
+    if (this.overlay) this.overlay(this);
+  }
+  drawGrid() {
+    const ctx = this.ctx, w = this.w, h = this.h;
+    const pass = (sx, sy, color) => {
+      ctx.strokeStyle = color; ctx.lineWidth = 1; ctx.beginPath();
+      for (let i = Math.ceil(this.x0 / sx); i * sx <= this.x1; i++) { const X = Math.round(this.X(i * sx)) + .5; ctx.moveTo(X, 0); ctx.lineTo(X, h); }
+      for (let i = Math.ceil(this.y0 / sy); i * sy <= this.y1; i++) { const Y = Math.round(this.Y(i * sy)) + .5; ctx.moveTo(0, Y); ctx.lineTo(w, Y); }
+      ctx.stroke();
+    };
+    pass(this.gx[1], this.gy[1], TH.minor);
+    pass(this.gx[0], this.gy[0], TH.major);
+  }
+  drawAxes() {
+    const ctx = this.ctx, w = this.w, h = this.h, ox = this.X(0), oy = this.Y(0);
+    const yIn = oy >= 0 && oy <= h, xIn = ox >= 0 && ox <= w;
+    const oyr = Math.round(oy) + .5, oxr = Math.round(ox) + .5;
+    ctx.strokeStyle = TH.axis; ctx.fillStyle = TH.axis; ctx.lineWidth = 1.4;
+    if (yIn) {
+      ctx.beginPath(); ctx.moveTo(0, oyr); ctx.lineTo(w - 2, oyr); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(w - 1, oyr); ctx.lineTo(w - 10, oyr - 4.5); ctx.lineTo(w - 10, oyr + 4.5); ctx.closePath(); ctx.fill();
+    }
+    if (xIn) {
+      ctx.beginPath(); ctx.moveTo(oxr, h); ctx.lineTo(oxr, 2); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(oxr, 1); ctx.lineTo(oxr - 4.5, 10); ctx.lineTo(oxr + 4.5, 10); ctx.closePath(); ctx.fill();
+    }
+    const [Mx] = this.gx, [My] = this.gy, dx = decimals(Mx), dy = decimals(My);
+    ctx.font = `11px ${MONO}`; ctx.textBaseline = 'alphabetic';
+    const ly = Math.min(Math.max(oy + 16, 14), h - 6);
+    ctx.textAlign = 'center';
+    for (let i = Math.ceil(this.x0 / Mx); i * Mx <= this.x1; i++) {
+      if (i === 0) continue;
+      const v = i * Mx, px = this.X(v);
+      if (px < 18 || px > w - 18) continue;
+      if (yIn) { ctx.strokeStyle = TH.axis; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(Math.round(px) + .5, oy - 3.5); ctx.lineTo(Math.round(px) + .5, oy + 3.5); ctx.stroke(); }
+      this.halo(this.pi ? (piFrac(v) || num(v, dx)) : num(v, dx), px, ly);
+    }
+    let lx, align;
+    if (ox > w) { lx = w - 5; align = 'right'; }
+    else if (ox - 8 > 34) { lx = ox - 8; align = 'right'; }
+    else { lx = Math.max(ox + 8, 5); align = 'left'; }
+    ctx.textAlign = align;
+    for (let i = Math.ceil(this.y0 / My); i * My <= this.y1; i++) {
+      if (i === 0) continue;
+      const v = i * My, py = this.Y(v);
+      if (py < 14 || py > h - 14) continue;
+      if (xIn) { ctx.strokeStyle = TH.axis; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(ox - 3.5, Math.round(py) + .5); ctx.lineTo(ox + 3.5, Math.round(py) + .5); ctx.stroke(); }
+      this.halo(num(v, dy), lx, py + 4);
+    }
+    ctx.font = `italic 14px ${MATH}`;
+    if (xIn && yIn) { ctx.textAlign = 'right'; this.halo('O', ox - 6, oy + 16); }
+    ctx.font = `italic 16px ${MATH}`;
+    if (yIn) { ctx.textAlign = 'right'; this.halo('x', w - 8, oy - 9, TH.ink); }
+    if (xIn) { ctx.textAlign = 'left'; this.halo('y', ox + 9, 16, TH.ink); }
+  }
+  color(cv) { return cv.ghost ? TH.ghost : TH.pens[cv.pen || 0]; }
+  drawLine(l) {
+    const ctx = this.ctx;
+    if (l.diag) {
+      ctx.save(); ctx.setLineDash([5, 5]); ctx.strokeStyle = TH.ink3; ctx.lineWidth = 1.3;
+      const a = Math.min(this.x0, this.y0) - 1, b = Math.max(this.x1, this.y1) + 1;
+      ctx.beginPath(); ctx.moveTo(this.X(a), this.Y(a)); ctx.lineTo(this.X(b), this.Y(b)); ctx.stroke(); ctx.restore();
+      for (let px = this.w * 0.12; px < this.w * 0.5; px += 6) {
+        const py = this.Y(this.ix(px));
+        if (py > 24 && py < this.h - 24) { ctx.font = `italic 14px ${MATH}`; ctx.textAlign = 'left'; this.halo('y = x', px + 8, py + 4, TH.ink3); break; }
+      }
+    }
+  }
+  drawCurve(cv, idx) {
+    const ctx = this.ctx, w = this.w, h = this.h, f = cv.f;
+    const [dmin, dmax] = cv.domain || [-Infinity, Infinity];
+    const poles = cv.poles || [];
+    const xa = Math.max(this.x0, dmin), xb = Math.min(this.x1, dmax);
+    if (!(xa < xb)) return;
+    const xs = [];
+    const st = 1 / this.kx;
+    for (let x = xa; x < xb; x += st) xs.push(x);
+    xs.push(xb);
+    const specials = poles.slice();
+    if (Number.isFinite(dmin)) specials.push(dmin);
+    for (const s of specials) {
+      if (s < this.x0 - 1 || s > this.x1 + 1) continue;
+      for (let k = 1; k <= 12; k++) {
+        const e = 10 ** -k;
+        if (s + e >= xa && s + e <= xb) xs.push(s + e);
+        if (s !== dmin && s - e >= xa && s - e <= xb) xs.push(s - e);
+      }
+      if (s === dmin && s >= xa) xs.push(s);
+    }
+    xs.sort((a, b) => a - b);
+    const lim = h * 6;
+    ctx.beginPath();
+    let pen = false, prev = null;
+    for (const x of xs) {
+      if (poles.length && prev !== null && poles.some(p => (p - prev) * (p - x) <= 0)) pen = false;
+      prev = x;
+      const y = f(x);
+      if (!Number.isFinite(y)) { pen = false; continue; }
+      const py = Math.max(-lim, Math.min(h + lim, this.Y(y))), px = this.X(x);
+      if (pen) ctx.lineTo(px, py); else ctx.moveTo(px, py);
+      pen = true;
+    }
+    ctx.save();
+    ctx.strokeStyle = this.color(cv); ctx.lineWidth = cv.width || 2.6; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+    if (cv.dash) ctx.setLineDash(cv.dash);
+    ctx.stroke(); ctx.restore();
+    if (cv.cf || cv.label) {
+      for (let px = w * (0.9 - 0.13 * (cv.slot || 0)); px > w * 0.08; px -= 7) {
+        const x = this.ix(px), y = f(x);
+        if (!Number.isFinite(y)) continue;
+        const py = this.Y(y);
+        if (py > 26 && py < h - 16) {
+          ctx.textAlign = 'left';
+          if (cv.cf) {
+            ctx.font = `italic 600 18px ${MATH}`; this.halo('C', px + 6, py - 10, this.color(cv));
+            const wc = ctx.measureText('C').width;
+            ctx.font = `italic 600 12px ${MATH}`; this.halo('f', px + 7 + wc, py - 6, this.color(cv));
+          } else {
+            ctx.font = `italic 600 16px ${MATH}`; this.halo(cv.label, px + 6, py - 9, this.color(cv));
+          }
+          break;
+        }
+      }
+    }
+  }
+  dot(X, Y, r, fill) {
+    const ctx = this.ctx;
+    ctx.beginPath(); ctx.arc(X, Y, r, 0, 2 * PI); ctx.fillStyle = fill; ctx.fill();
+    ctx.lineWidth = 2; ctx.strokeStyle = TH.board; ctx.stroke();
+  }
+  drawPoint(p) {
+    const X = this.X(p.x), Y = this.Y(p.y);
+    if (X < -5 || X > this.w + 5 || Y < -5 || Y > this.h + 5) return;
+    this.dot(X, Y, 4.3, TH.ink);
+    this.ctx.font = `italic 600 15px ${MATH}`; this.ctx.textAlign = 'left';
+    this.halo(p.n, X + 7, Y - 8, TH.ink);
+  }
+  drawTrack() {
+    const ctx = this.ctx, t = this.track, w = this.w, h = this.h;
+    if (t.multi) {
+      const X = this.X(t.x);
+      if (X < 0 || X > w) return;
+      ctx.save(); ctx.setLineDash([4, 4]); ctx.strokeStyle = TH.ink3; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(Math.round(X) + .5, 0); ctx.lineTo(Math.round(X) + .5, h); ctx.stroke(); ctx.restore();
+      for (const cv of this.curves) {
+        const y = cv.f(t.x);
+        if (!Number.isFinite(y)) continue;
+        const Y = this.Y(y);
+        if (Y < -6 || Y > h + 6) continue;
+        this.dot(X, Y, 5, this.color(cv));
+      }
+      return;
+    }
+    const x = t.x, y = t.f(x);
+    if (!Number.isFinite(y)) return;
+    const X = this.X(x), Y = this.Y(y);
+    if (t.tangent) {
+      const d = t.df(x);
+      if (Number.isFinite(d)) {
+        const L = Math.min(this.x1 - this.x0, (this.y1 - this.y0) / Math.max(Math.abs(d), 1e-9));
+        ctx.save(); ctx.strokeStyle = TH.pens[1]; ctx.lineWidth = 1.8;
+        ctx.beginPath(); ctx.moveTo(this.X(x - L), this.Y(y - d * L)); ctx.lineTo(this.X(x + L), this.Y(y + d * L)); ctx.stroke(); ctx.restore();
+        let ux = this.kx, uy = -d * this.ky; const n = Math.hypot(ux, uy); ux /= n; uy /= n;
+        for (const s of [1, -1]) {
+          const lx = X + s * 70 * ux, lyy = Y + s * 70 * uy;
+          if (lx > 12 && lx < w - 20 && lyy > 20 && lyy < h - 8) { ctx.font = `italic 600 15px ${MATH}`; ctx.textAlign = 'left'; this.halo('T', lx + 5, lyy - 7, TH.pens[1]); break; }
+        }
+      }
+    }
+    const ox = Math.min(Math.max(this.X(0), 0), w), oy = Math.min(Math.max(this.Y(0), 0), h);
+    ctx.save(); ctx.setLineDash([4, 4]); ctx.strokeStyle = TH.ink3; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(X, Y); ctx.lineTo(X, oy); ctx.moveTo(X, Y); ctx.lineTo(ox, Y); ctx.stroke(); ctx.restore();
+    this.dot(X, Y, 5.5, TH.pens[1]);
+    ctx.font = `italic 600 16px ${MATH}`; ctx.textAlign = 'right';
+    this.halo('M', X - 8, Y - 9, TH.ink);
+  }
+}
+function redrawAll() { PLOTS.forEach(p => p.draw()); }
+const mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+if (mq && mq.addEventListener) mq.addEventListener('change', () => { readTheme(); redrawAll(); });
+new MutationObserver(() => { readTheme(); redrawAll(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'class', 'style'] });
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(redrawAll);
+
+/* ================= Tableau de variations (SVG) ================= */
+let vtId = 0;
+function varTable(t) {
+  const n = t.xs.length, W = 360, L = 54, pad = 32, hx = 32, hfp = t.fp ? 34 : 0, hf = 88, H = hx + hfp + hf;
+  const P = i => n === 1 ? (L + W) / 2 : L + pad + (W - L - 2 * pad) * i / (n - 1);
+  const id = 'vt-ah-' + (++vtId), fTop = hx + hfp;
+  const lvlY = l => l === 'top' ? fTop + 22 : l === 'bot' ? H - 12 : fTop + hf / 2 + 5;
+  const tw = s => String(s).replace(/<[^>]+>/g, '').length * 7.6;
+  const dbl = (x, y1, y2) => `<line class="bar" x1="${x - 2}" y1="${y1}" x2="${x - 2}" y2="${y2}"/><line class="bar" x1="${x + 2}" y1="${y1}" x2="${x + 2}" y2="${y2}"/>`;
+  let s = `<svg class="vt" viewBox="0 0 ${W} ${H + 1}" role="img" aria-label="Tableau de variations"><defs><marker id="${id}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0 0L10 5L0 10z"/></marker></defs>`;
+  s += `<rect class="frame" x="0.5" y="0.5" width="${W - 1}" height="${H}" rx="3"/>`;
+  s += `<line class="frame" x1="0" y1="${hx}" x2="${W}" y2="${hx}"/>`;
+  if (t.fp) s += `<line class="frame" x1="0" y1="${fTop}" x2="${W}" y2="${fTop}"/>`;
+  s += `<line class="frame" x1="${L}" y1="0" x2="${L}" y2="${H}"/>`;
+  s += `<text class="lab" x="${L / 2}" y="${hx / 2 + 5}" text-anchor="middle">x</text>`;
+  if (t.fp) s += `<text class="lab" x="${L / 2}" y="${hx + hfp / 2 + 5}" text-anchor="middle">f ′(x)</text>`;
+  s += `<text class="lab" x="${L / 2}" y="${fTop + hf / 2 + 5}" text-anchor="middle">f</text>`;
+  t.xs.forEach((v, i) => { s += `<text x="${P(i)}" y="${hx / 2 + 5}" text-anchor="middle">${v}</text>`; });
+  if (t.fp) {
+    const cy = hx + hfp / 2 + 5;
+    t.fp.signs.forEach((sg, i) => { s += `<text class="sg" x="${(P(i) + P(i + 1)) / 2}" y="${cy + 1}" text-anchor="middle">${sg}</text>`; });
+    t.fp.marks.forEach((m, i) => { if (m === '0') s += `<text x="${P(i)}" y="${cy}" text-anchor="middle">0</text>`; else if (m === '||') s += dbl(P(i), hx, fTop); });
+  }
+  (t.dbar || []).forEach((b, i) => { if (b) s += dbl(P(i), hx, H); });
+  t.vals.forEach((v, i) => {
+    if (v.left) s += `<text x="${P(i) - 8}" y="${lvlY(v.left.l)}" text-anchor="end">${v.left.v}</text>`;
+    if (v.right) s += `<text x="${P(i) + 8}" y="${lvlY(v.right.l)}" text-anchor="start">${v.right.v}</text>`;
+    if (v.v !== undefined) s += `<text x="${P(i)}" y="${lvlY(v.l)}" text-anchor="middle">${v.v}</text>`;
+  });
+  for (let i = 0; i < n - 1; i++) {
+    const A = t.vals[i], B = t.vals[i + 1];
+    const a = A.right || (A.v !== undefined ? A : null), b = B.left || (B.v !== undefined ? B : null);
+    if (!a || !b) continue;
+    const x1 = A.right ? P(i) + 8 + tw(a.v) + 5 : P(i) + tw(a.v) / 2 + 7;
+    const x2 = B.left ? P(i + 1) - 8 - tw(b.v) - 5 : P(i + 1) - tw(b.v) / 2 - 7;
+    let y1 = lvlY(a.l) - 5, y2 = lvlY(b.l) - 5;
+    const dir = Math.sign(y2 - y1);
+    y1 += dir * 8; y2 -= dir * 8;
+    s += `<line class="arr" x1="${x1.toFixed(1)}" y1="${y1}" x2="${x2.toFixed(1)}" y2="${y2}" marker-end="url(#${id})"/>`;
+  }
+  return s + '</svg>';
+}
+
+/* ================= Glyphes du sommaire ================= */
+function glyph(fn) {
+  const [a, b, c, d] = fn.gv, W = 40, H = 28;
+  const sx = x => (x - a) / (b - a) * W, sy = y => H - (y - c) / (d - c) * H;
+  let path = '', pen = false, prev = null;
+  const N = 90;
+  for (let i = 0; i <= N; i++) {
+    const x = a + (b - a) * i / N;
+    if (fn.poles && prev !== null && fn.poles.some(q => (q - prev) * (q - x) <= 0)) pen = false;
+    prev = x;
+    const y = fn.f(x, fn.ref);
+    if (!Number.isFinite(y) || y < c - (d - c) || y > d + (d - c)) { pen = false; continue; }
+    path += (pen ? 'L' : 'M') + sx(x).toFixed(1) + ' ' + sy(y).toFixed(1);
+    pen = true;
+  }
+  const ax = `M0 ${sy(0).toFixed(1)}H${W}M${sx(0).toFixed(1)} 0V${H}`;
+  return `<svg viewBox="0 0 ${W} ${H}" aria-hidden="true"><path class="ax" d="${ax}"/><path class="c" d="${path}"/></svg>`;
+}
+
+/* ================= EXPLORER ================= */
+const EX = { fid: 'carre', p: {}, x: 1, tan: true, pts: true, ref: false, info: null };
+const exPlot = new Plot($('#cv-ex'));
+exPlot.onTrack = x => { EX.x = x; $('#m-x').value = x; drawEx(); renderRO(); };
+
+function renderRail() {
+  const groups = [...new Set(FUNCS.map(f => f.group))];
+  $('#rail').innerHTML = groups.map(g => `<div class="grp"><h3 class="lbl">${g}</h3>${FUNCS.filter(f => f.group === g).map(f =>
+    `<button class="fn" data-f="${f.id}" aria-pressed="false">${glyph(f)}<span><span class="nm">${f.short}</span><span class="fx">${f.expr(f.ref)}</span></span></button>`).join('')}</div>`).join('');
+  $$('#rail .fn').forEach(b => b.addEventListener('click', () => selectFn(b.dataset.f)));
+}
+function setHash(h) { try { history.replaceState(null, '', '#' + h); } catch (e) {} }
+
+function selectFn(id, params) {
+  const fn = FN[id]; if (!fn) return;
+  EX.fid = id;
+  EX.p = Object.assign(defaults(fn), params || {});
+  EX.x = fn.m0;
+  $$('#rail .fn').forEach(b => b.setAttribute('aria-pressed', b.dataset.f === id));
+  const rail = $('#rail'), act = $(`#rail .fn[data-f="${id}"]`);
+  if (act && rail.scrollWidth > rail.clientWidth + 2) rail.scrollLeft = act.offsetLeft - rail.clientWidth / 2 + act.offsetWidth / 2;
+  renderParams();
+  setupM();
+  exPlot.pi = !!fn.trig;
+  exPlot.fit(fn.view(EX.p), true);
+  updateEx();
+  store.set('fr-fn', id);
+  if (!$('#p-explorer').hidden) setHash(id);
+}
+
+function fmtParam(pr, v) { return pr.pi ? piFrac(v * PI / 12) : num(v); }
+function renderParams() {
+  const fn = FN[EX.fid];
+  const box = $('#params');
+  $('#noparams').hidden = fn.params.length > 0;
+  $('#reset-row').hidden = fn.params.length === 0;
+  box.innerHTML = fn.params.map(pr => `<div class="prm"><label for="p-${pr.k}">${pr.lab}</label><input type="range" id="p-${pr.k}" min="${pr.min}" max="${pr.max}" step="${pr.step}" value="${EX.p[pr.k]}"><output id="o-${pr.k}" for="p-${pr.k}">${fmtParam(pr, EX.p[pr.k])}</output></div>`).join('');
+  fn.params.forEach(pr => {
+    const el = $('#p-' + pr.k);
+    el.addEventListener('input', () => {
+      let v = Math.round(parseFloat(el.value) * 1e6) / 1e6;
+      if (pr.nz && v === 0) { v = EX.p[pr.k] > 0 ? -pr.step : pr.step; el.value = v; }
+      EX.p[pr.k] = v;
+      $('#o-' + pr.k).textContent = fmtParam(pr, v);
+      updateEx();
+    });
+  });
+}
+function setupM() {
+  const fn = FN[EX.fid], v = fn.view(EX.p), el = $('#m-x');
+  const a = fn.mMin !== undefined ? Math.max(v[0], fn.mMin) : v[0];
+  el.min = a; el.max = v[1]; el.step = fn.trig ? PI / 24 : 0.05; el.value = EX.x;
+}
+$('#m-x').addEventListener('input', e => { EX.x = parseFloat(e.target.value); drawEx(); renderRO(); });
+
+function updateEx() {
+  const fn = FN[EX.fid];
+  EX.info = fn.info(EX.p);
+  $('#ex-eq').innerHTML = `<i>C</i><sub><i>f</i></sub> : <i>y</i> = ${fn.expr(EX.p)}`;
+  $('#cv-ex').setAttribute('aria-label', `Courbe de ${EX.info.name.toLowerCase()} : y = ${$('#ex-eq').textContent.split('= ').slice(1).join('= ')}`);
+  const isRef = sameParams(EX.p, fn.ref);
+  const refL = $('#t-ref-l'), refI = $('#t-ref');
+  refI.disabled = isRef || fn.params.length === 0;
+  refL.classList.toggle('off', refI.disabled);
+  renderFiche(fn, EX.info);
+  drawEx();
+  renderRO();
+}
+function drawEx() {
+  const fn = FN[EX.fid], p = EX.p, info = EX.info;
+  const curves = [];
+  if (EX.ref && !sameParams(p, fn.ref)) curves.push({ f: x => fn.f(x, fn.ref), ghost: true, dash: [6, 5], width: 1.7, poles: fn.poles, domain: fn.domain });
+  curves.push({ f: x => fn.f(x, p), pen: 0, width: 2.7, poles: fn.poles, domain: fn.domain, cf: true });
+  exPlot.curves = curves;
+  exPlot.points = EX.pts ? info.pts : [];
+  exPlot.track = { x: EX.x, f: x => fn.f(x, p), df: x => fn.df(x, p), tangent: EX.tan };
+  exPlot.draw();
+}
+function renderRO() {
+  const fn = FN[EX.fid], p = EX.p, x = EX.x, t = !!fn.trig, y = fn.f(x, p);
+  $('#m-out').textContent = fx(x, t);
+  const ro = $('#ro');
+  if (!Number.isFinite(y)) { ro.innerHTML = `<dt>Point</dt><dd class="warn">${fx(x, t)} n’appartient pas à l’ensemble de définition : <i>M</i> n’existe pas ici.</dd>`; return; }
+  const d = fn.df(x, p), nd = fn.nd && fn.nd(x);
+  let h = `<dt>Point</dt><dd><i>M</i>${pt(x, y, t)}</dd>`;
+  if (nd || !Number.isFinite(d)) h += `<dt>Dérivée</dt><dd class="warn">${nd || 'Pas de nombre dérivé en ce point.'}</dd>`;
+  else {
+    h += `<dt>Nombre dérivé</dt><dd><i>f</i> ′(${fx(x, t)}) ${isRounded(d) ? '≈' : '='} ${num(d)}</dd>`;
+    h += `<dt>Tangente</dt><dd><i>y</i> = ${poly([[r2(d), X], [r2(y - d * x), '']])}</dd>`;
+  }
+  ro.innerHTML = h;
+}
+function renderFiche(fn, info) {
+  const rows = [['Ensemble de définition', info.domain], ['Dérivée', `<i>f</i> ′(<i>x</i>) = ${info.deriv}`], ['Parité', info.parity]].concat(info.extra || []);
+  const lims = info.lims ? `<ul class="lims">${info.lims.map(([a, v]) => `<li>${lim(a, v)}</li>`).join('')}</ul>` : '';
+  const pts = info.pts.map(q => `<li><b>${q.n}</b><span class="m">${pt(q.x, q.y, info.ptsTrig)}</span>${q.d ? ` <span class="note">· ${q.d}</span>` : ''}</li>`).join('');
+  $('#fiche').innerHTML = `
+    <header class="fiche-head">
+      <div class="lbl" style="margin:0">${fn.group}</div>
+      <h2>${info.name}</h2>
+      <div class="big"><i>f</i>(<i>x</i>) = ${fn.expr(EX.p)}</div>
+    </header>
+    <div class="fiche-body">
+      <dl class="idt">${rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>
+      <section><h3 class="lbl">Tableau de variations${info.tableNote ? ` <span class="note">· ${info.tableNote}</span>` : ''}</h3><div class="vt-wrap">${varTable(info.table)}</div></section>
+      <section><h3 class="lbl">Limites</h3>${lims}${info.limNote ? `<p class="limnote">${info.limNote}</p>` : ''}</section>
+      <section><h3 class="lbl">Points remarquables</h3><ul class="pts">${pts}</ul></section>
+      <section><h3 class="lbl">À retenir</h3><ul class="keep">${info.keep.map(k => `<li>${k}</li>`).join('')}</ul></section>
+      <aside class="sti"><h3 class="lbl">En physique et en STI2D</h3><p>${info.sti}</p></aside>
+    </div>`;
+}
+$('#reset').addEventListener('click', () => { const fn = FN[EX.fid]; EX.p = defaults(fn); renderParams(); exPlot.fit(fn.view(EX.p), true); setupM(); updateEx(); });
+$('#t-tan').addEventListener('change', e => { EX.tan = e.target.checked; drawEx(); });
+$('#t-pts').addEventListener('change', e => { EX.pts = e.target.checked; drawEx(); });
+$('#t-ref').addEventListener('change', e => { EX.ref = e.target.checked; drawEx(); });
+$('#ex-zin').addEventListener('click', () => exPlot.zoom(1.25));
+$('#ex-zout').addEventListener('click', () => exPlot.zoom(0.8));
+$('#ex-fit').addEventListener('click', () => { const fn = FN[EX.fid]; exPlot.fit(fn.view(EX.p), true); });
+
+/* ================= COMPARER ================= */
+const PRESETS = [
+  { id: 'ordre', title: 'Qui est au-dessus ?', sub: 'x · x² · x³', fns: ['affine', 'carre', 'cube'], rect: [-0.7, 1.9, -0.6, 2.4], ortho: true, x: 0.5,
+    obs: 'Les trois courbes passent par O(0 ; 0) et par (1 ; 1). Entre 0 et 1, on a <i>x</i>³ < <i>x</i>² < <i>x</i> : élever à une puissance plus grande rapetisse le nombre. Au-delà de 1, l’ordre s’inverse : <i>x</i> < <i>x</i>² < <i>x</i>³.' },
+  { id: 'expln', title: 'exp et ln, symétriques', sub: 'eˣ · ln x · y = x', fns: ['exp', 'ln'], diag: true, rect: [-4, 5, -4, 5], ortho: true, x: 1,
+    obs: 'Les deux courbes sont symétriques par rapport à la droite <i>y</i> = <i>x</i> : ln est la fonction réciproque de exp. Pour <i>x</i> > 0, e<sup>ln <i>x</i></sup> = <i>x</i>, et pour tout réel <i>x</i>, ln(e<sup><i>x</i></sup>) = <i>x</i>. Le point (0 ; 1) de exp correspond au point (1 ; 0) de ln.' },
+  { id: 'racine', title: 'Racine et carré, réciproques', sub: '√x · x² · y = x', fns: ['racine', 'carre'], diag: true, rect: [-0.6, 3.2, -0.6, 3.2], ortho: true, x: 0.5,
+    obs: 'Sur [0 ; +∞[, √<i>x</i> et <i>x</i>² sont réciproques : leurs courbes sont symétriques par rapport à <i>y</i> = <i>x</i>. Elles se coupent en (0 ; 0) et (1 ; 1). Sur ]0 ; 1[, √<i>x</i> > <i>x</i>² ; après 1, c’est <i>x</i>² qui passe devant.' },
+  { id: 'trig', title: 'sin et cos, décalées de π/2', sub: 'sin x · cos x', fns: ['sin', 'cos'], rect: [-2 * PI, 2 * PI, -2, 2], ortho: true, pi: true, x: PI / 4,
+    obs: 'La courbe de cos est celle de sin décalée de π/2 vers la gauche : cos <i>x</i> = sin(<i>x</i> + π/2). Les deux courbes se croisent en <i>x</i> = π/4, où sin et cos valent √2/2 ≈ 0,71. En électricité, deux signaux décalés d’un quart de période sont dits en quadrature.' },
+  { id: 'croiss', title: 'Croissances comparées', sub: 'eˣ · x³ · x · ln x', fns: ['exp', 'cube', 'affine', 'ln'], rect: [0, 6.2, -25, 260], ortho: false, x: 4,
+    obs: 'En +∞, ces quatre fonctions tendent vers +∞, mais pas au même rythme. <i>x</i>³ passe un moment devant e<sup><i>x</i></sup>, puis e<sup><i>x</i></sup> le dépasse définitivement vers <i>x</i> ≈ 4,54. À cette échelle, <i>x</i> et ln <i>x</i> semblent plates : en +∞, l’exponentielle l’emporte sur les puissances de <i>x</i>, qui l’emportent sur ln <i>x</i>.' }
+];
+const CMP = { slots: [null, null, null, null], preset: 'ordre', x: 0.5 };
+const cmpPlot = new Plot($('#cv-cmp'));
+cmpPlot.onTrack = x => { CMP.x = x; drawCmp(); renderCmpRO(); };
+
+function renderPresets() {
+  $('#presets').innerHTML = PRESETS.map(p => `<button class="preset" data-p="${p.id}" aria-pressed="false"><span class="pt">${p.title}</span><span class="ps">${p.sub}</span></button>`).join('');
+  $$('#presets .preset').forEach(b => b.addEventListener('click', () => applyPreset(b.dataset.p)));
+  $('#chips').innerHTML = FUNCS.map(f => `<button class="chip" data-f="${f.id}" aria-pressed="false"><span class="sw"></span><span>${f.expr(f.ref)}</span></button>`).join('');
+  $$('#chips .chip').forEach(b => b.addEventListener('click', () => toggleCmp(b.dataset.f)));
+}
+function applyPreset(id) {
+  const p = PRESETS.find(q => q.id === id);
+  CMP.preset = id; CMP.slots = [null, null, null, null];
+  p.fns.forEach((f, i) => CMP.slots[i] = f);
+  CMP.x = p.x;
+  cmpPlot.pi = !!p.pi;
+  cmpPlot.fit(p.rect, p.ortho);
+  $('#cmp-msg').textContent = '';
+  renderCmp();
+}
+function toggleCmp(id) {
+  const i = CMP.slots.indexOf(id);
+  if (i >= 0) CMP.slots[i] = null;
+  else {
+    const j = CMP.slots.indexOf(null);
+    if (j < 0) { $('#cmp-msg').textContent = 'Quatre courbes au plus, comme les quatre couleurs du stylo. Retire une courbe pour en ajouter une autre.'; return; }
+    CMP.slots[j] = id;
+  }
+  $('#cmp-msg').textContent = '';
+  if (CMP.preset) {
+    const p = PRESETS.find(q => q.id === CMP.preset);
+    const same = p.fns.length === CMP.slots.filter(Boolean).length && p.fns.every(f => CMP.slots.includes(f));
+    if (!same) CMP.preset = null;
+  }
+  const sel = CMP.slots.filter(Boolean);
+  const allTrig = sel.length > 0 && sel.every(f => FN[f].trig);
+  if (allTrig !== cmpPlot.pi) {
+    cmpPlot.pi = allTrig;
+    if (allTrig) cmpPlot.fit([-2 * PI, 2 * PI, -2, 2], true);
+  }
+  renderCmp();
+}
+function renderCmp() {
+  $$('#presets .preset').forEach(b => b.setAttribute('aria-pressed', b.dataset.p === CMP.preset));
+  $$('#chips .chip').forEach(b => {
+    const i = CMP.slots.indexOf(b.dataset.f);
+    b.setAttribute('aria-pressed', i >= 0);
+    if (i >= 0) b.style.setProperty('--c', `var(--pen-${i + 1})`); else b.style.removeProperty('--c');
+  });
+  const sel = CMP.slots.map((f, i) => f ? { f, i } : null).filter(Boolean);
+  $('#legend').innerHTML = sel.length ? sel.map(({ f, i }) => `<span><span class="sw" style="background:var(--pen-${i + 1})"></span><span><i>y</i> = ${FN[f].expr(FN[f].ref)}</span></span>`).join('') : '<span class="note">Aucune courbe sélectionnée</span>';
+  const p = PRESETS.find(q => q.id === CMP.preset);
+  $('#obs').innerHTML = p ? `<h3 class="lbl">Ce qu’on observe</h3><p>${p.obs}</p>`
+    : `<h3 class="lbl">Sélection libre</h3><p>Survole le graphique, ou touche-le, pour lire la valeur de chaque fonction au même <i>x</i>. Le bouton de recentrage revient à un repère standard.</p>`;
+  drawCmp(); renderCmpRO();
+}
+function drawCmp() {
+  const p = PRESETS.find(q => q.id === CMP.preset);
+  cmpPlot.curves = CMP.slots.map((f, i) => f ? { f: x => FN[f].f(x, FN[f].ref), pen: i, slot: i, width: 2.6, poles: FN[f].poles, domain: FN[f].domain, label: FN[f].plain } : null).filter(Boolean);
+  cmpPlot.lines = p && p.diag ? [{ diag: true }] : [];
+  cmpPlot.track = { x: CMP.x, multi: true };
+  cmpPlot.draw();
+}
+function renderCmpRO() {
+  const sel = CMP.slots.map((f, i) => f ? { f, i } : null).filter(Boolean);
+  const t = cmpPlot.pi;
+  let h = `<span><span class="k">pour</span><span><i>x</i> = ${fx(CMP.x, t)}</span></span>`;
+  h += sel.map(({ f, i }) => { const y = FN[f].f(CMP.x, FN[f].ref); return `<span><span class="sw" style="background:var(--pen-${i + 1})"></span><span>${FN[f].expr(FN[f].ref)} ${Number.isFinite(y) ? (isRounded(y) ? '≈ ' : '= ') + num(y) : '<span class="note">non définie</span>'}</span></span>`; }).join('');
+  $('#cmp-ro').innerHTML = h;
+}
+$('#cmp-zin').addEventListener('click', () => cmpPlot.zoom(1.25));
+$('#cmp-zout').addEventListener('click', () => cmpPlot.zoom(0.8));
+$('#cmp-fit').addEventListener('click', () => {
+  const p = PRESETS.find(q => q.id === CMP.preset);
+  if (p) cmpPlot.fit(p.rect, p.ortho); else cmpPlot.fit(cmpPlot.pi ? [-2 * PI, 2 * PI, -2, 2] : [-5, 5, -4, 5], true);
+});
+
+/* ================= QUIZ ================= */
+const SHAPES = [
+  { id: 'x2', h: X + sup(2), f: x => x * x, v: [-4, 4, -1, 6], near: ['mx2', 'x2m2', 'xm1', 'abs'], why: 'Parabole tournée vers le haut, dont le sommet est l’origine.', go: ['carre', { a: 1, b: 0, c: 0 }] },
+  { id: 'mx2', h: MINUS + X + sup(2), f: x => -x * x, v: [-4, 4, -6, 1], near: ['x2', 'x2m2', 'abs'], why: 'Parabole tournée vers le bas (coefficient −1), de sommet O.', go: ['carre', { a: -1, b: 0, c: 0 }] },
+  { id: 'x2m2', h: X + sup(2) + ' − 2', f: x => x * x - 2, v: [-4, 4, -3, 4], near: ['x2', 'xm1', 'mx2'], why: 'La parabole de la fonction carré, descendue de 2 : sommet (0 ; −2).', go: ['carre', { a: 1, b: 0, c: -2 }] },
+  { id: 'xm1', h: `(${X} − 1)${sup(2)}`, f: x => (x - 1) ** 2, v: [-3, 5, -1, 6], near: ['x2', 'x2m2', 'abs'], why: 'La parabole de la fonction carré, décalée de 1 vers la droite : sommet (1 ; 0).', go: ['carre', { a: 1, b: -2, c: 1 }] },
+  { id: 'x3', h: X + sup(3), f: x => x * x * x, v: [-3, 3, -3, 3], near: ['x2', 'inv', 'aff'], why: 'Symétrique par rapport à l’origine, avec une tangente horizontale en O mais sans extremum.', go: ['cube', { a: 1 }] },
+  { id: 'inv', h: frac('1', X), f: x => 1 / x, poles: [0], v: [-4, 4, -3, 3], near: ['minv', 'x3', 'ln'], why: 'Hyperbole à deux branches, en haut à droite et en bas à gauche.', go: ['inverse', { k: 1 }] },
+  { id: 'minv', h: MINUS + frac('1', X), f: x => -1 / x, poles: [0], v: [-4, 4, -3, 3], near: ['inv', 'x3', 'expm'], why: 'Hyperbole en haut à gauche et en bas à droite : le signe moins retourne la courbe de 1/x.', go: ['inverse', { k: -1 }] },
+  { id: 'sqrt', h: rt(X), f: x => x < 0 ? NaN : Math.sqrt(x), dom: [0, Infinity], v: [-1, 6, -1.5, 3], near: ['ln', 'x2', 'exp'], why: 'Part de l’origine avec une tangente verticale, puis croît de plus en plus lentement.', go: ['racine', {}] },
+  { id: 'abs', h: `|${X}|`, f: x => Math.abs(x), v: [-4, 4, -1, 5], near: ['x2', 'xm1', 'aff2'], why: 'Un « V » : deux demi-droites qui se rejoignent en un point anguleux en O.', go: ['abs', {}] },
+  { id: 'exp', h: 'e' + sup(X), f: x => Math.exp(x), v: [-3, 3, -1, 5], near: ['expm', 'x2', 'ln'], why: 'Toujours au-dessus de l’axe des abscisses, passe par (0 ; 1) et s’envole vers +∞.', go: ['exp', { k: 1 }] },
+  { id: 'expm', h: 'e' + sup(MINUS + X), f: x => Math.exp(-x), v: [-3, 3, -1, 5], near: ['exp', 'minv', 'x2'], why: 'Symétrique de la courbe de eˣ par rapport à l’axe des ordonnées : décroissante, passe par (0 ; 1).', go: ['exp', { k: -1 }] },
+  { id: 'ln', h: 'ln ' + X, f: x => x > 0 ? Math.log(x) : NaN, dom: [0, Infinity], v: [-1, 6, -3, 2.5], near: ['sqrt', 'exp', 'inv'], why: 'Définie seulement pour x > 0, passe par (1 ; 0) et plonge vers −∞ près de 0.', go: ['ln', {}] },
+  { id: 'sin', h: 'sin ' + X, f: Math.sin, trig: true, v: [-2 * PI, 2 * PI, -2.4, 2.4], near: ['cos', 'sin2', 'sin2x'], why: 'Oscille entre −1 et 1 avec une période 2π, et passe par l’origine.', go: ['sin', { A: 1, w: 1, j: 0 }] },
+  { id: 'cos', h: 'cos ' + X, f: Math.cos, trig: true, v: [-2 * PI, 2 * PI, -2.4, 2.4], near: ['sin', 'sin2', 'sin2x'], why: 'Oscille entre −1 et 1 et vaut 1 en 0 : la courbe est symétrique par rapport à l’axe des ordonnées.', go: ['cos', { A: 1, w: 1, j: 0 }] },
+  { id: 'sin2', h: '2 sin ' + X, f: x => 2 * Math.sin(x), trig: true, v: [-2 * PI, 2 * PI, -2.4, 2.4], near: ['sin', 'sin2x', 'cos'], why: 'Même période que sin x (2π), mais l’amplitude vaut 2.', go: ['sin', { A: 2, w: 1, j: 0 }] },
+  { id: 'sin2x', h: `sin(2${X})`, f: x => Math.sin(2 * x), trig: true, v: [-2 * PI, 2 * PI, -2.4, 2.4], near: ['sin', 'sin2', 'cos'], why: 'Amplitude 1, mais deux fois plus d’oscillations : la période vaut π.', go: ['sin', { A: 1, w: 2, j: 0 }] },
+  { id: 'aff', h: `2${X} + 1`, f: x => 2 * x + 1, v: [-4, 4, -3, 3], near: ['aff2', 'aff3', 'x3'], why: 'Droite croissante de coefficient directeur 2, qui coupe l’axe des ordonnées en (0 ; 1).', go: ['affine', { a: 2, b: 1 }] },
+  { id: 'aff2', h: `${MINUS}${X} + 2`, f: x => -x + 2, v: [-4, 4, -3, 3], near: ['aff', 'aff3', 'abs'], why: 'Droite décroissante de coefficient directeur −1, qui coupe l’axe des ordonnées en (0 ; 2).', go: ['affine', { a: -1, b: 2 }] },
+  { id: 'aff3', h: `0,5${X} − 1`, f: x => 0.5 * x - 1, v: [-4, 4, -3, 3], near: ['aff', 'aff2', 'sqrt'], why: 'Droite croissante peu pentue (coefficient 0,5), qui coupe l’axe des ordonnées en (0 ; −1).', go: ['affine', { a: 0.5, b: -1 }] }
+];
+const SH = Object.fromEntries(SHAPES.map(s => [s.id, s]));
+const mapsto = s => `${X} ↦ ${s}`;
+const PROPS = [
+  { q: 'Quel est l’ensemble de définition de la fonction ln ?', a: ']0 ; +∞[', d: ['ℝ', '[0 ; +∞[', 'ℝ*'], why: 'ln <i>x</i> n’existe que pour <i>x</i> > 0 : ni 0 ni les nombres négatifs n’ont de logarithme.', go: ['ln'] },
+  { q: `Quel est l’ensemble de définition de ${mapsto(rt(X))} ?`, a: '[0 ; +∞[', d: [']0 ; +∞[', 'ℝ', 'ℝ*'], why: 'La racine carrée existe pour tout <i>x</i> ≥ 0, et √0 = 0 : 0 est inclus.', go: ['racine'] },
+  { q: `Quel est l’ensemble de définition de ${mapsto(frac('1', X))} ?`, a: 'ℝ* = ]−∞ ; 0[ ∪ ]0 ; +∞[', d: ['ℝ', ']0 ; +∞[', '[0 ; +∞['], why: 'On ne divise pas par 0 : seul 0 est exclu.', go: ['inverse'] },
+  { q: `Quelle est la dérivée de ${FX} = ${X}${sup(2)} ?`, a: `2${X}`, d: [X, '2', frac(X + sup(3), '3')], why: '(<i>x</i><sup>2</sup>)′ = 2<i>x</i>. Plus généralement, (<i>x</i><sup><i>n</i></sup>)′ = <i>n x</i><sup><i>n</i>−1</sup>.', go: ['carre'] },
+  { q: `Quelle est la dérivée de ${FX} = ${X}${sup(3)} ?`, a: `3${X}${sup(2)}`, d: [X + sup(2), `3${X}`, frac(X + sup(4), '4')], why: '(<i>x</i><sup><i>n</i></sup>)′ = <i>n x</i><sup><i>n</i>−1</sup> avec <i>n</i> = 3.', go: ['cube'] },
+  { q: `Quelle est la dérivée de ${FX} = ${frac('1', X)} ?`, a: MINUS + frac('1', X + sup(2)), d: [frac('1', X + sup(2)), 'ln ' + X, MINUS + frac('1', X)], why: '(1/<i>x</i>)′ = −1/<i>x</i><sup>2</sup> : elle est négative, donc la fonction inverse est décroissante sur chacun de ses intervalles.', go: ['inverse'] },
+  { q: `Quelle est la dérivée de ${FX} = ${rt(X)} ?`, a: frac('1', '2' + rt(X)), d: ['2' + rt(X), frac('1', rt(X)), frac(rt(X), '2')], why: '(√<i>x</i>)′ = 1/(2√<i>x</i>), valable seulement pour <i>x</i> > 0.', go: ['racine'] },
+  { q: `Quelle est la dérivée de ${FX} = e${sup(X)} ?`, a: 'e' + sup(X), d: [X + 'e' + sup(X + '−1'), 'ln ' + X, 'e'], why: 'L’exponentielle est égale à sa propre dérivée.', go: ['exp'] },
+  { q: `Quelle est la dérivée de ${FX} = ln ${X} ?`, a: frac('1', X), d: ['e' + sup(X), frac('ln ' + X, X), MINUS + frac('1', X + sup(2))], why: '(ln <i>x</i>)′ = 1/<i>x</i>, positive sur ]0 ; +∞[ : ln est croissante.', go: ['ln'] },
+  { q: `Quelle est la dérivée de ${FX} = sin ${X} ?`, a: 'cos ' + X, d: [MINUS + 'cos ' + X, 'sin ' + X, MINUS + 'sin ' + X], why: '(sin <i>x</i>)′ = cos <i>x</i>.', go: ['sin'] },
+  { q: `Quelle est la dérivée de ${FX} = cos ${X} ?`, a: MINUS + 'sin ' + X, d: ['sin ' + X, 'cos ' + X, MINUS + 'cos ' + X], why: '(cos <i>x</i>)′ = −sin <i>x</i> : attention au signe moins.', go: ['cos'] },
+  { q: 'Laquelle de ces fonctions est paire ?', a: mapsto(X + sup(2)), d: [mapsto(X + sup(3)), mapsto(frac('1', X)), mapsto('e' + sup(X))], why: '(−<i>x</i>)<sup>2</sup> = <i>x</i><sup>2</sup> : la courbe est symétrique par rapport à l’axe des ordonnées.', go: ['carre'] },
+  { q: 'Laquelle de ces fonctions est impaire ?', a: mapsto(X + sup(3)), d: [mapsto(X + sup(2)), mapsto(`|${X}|`), mapsto('cos ' + X)], why: '(−<i>x</i>)<sup>3</sup> = −<i>x</i><sup>3</sup> : la courbe est symétrique par rapport à l’origine.', go: ['cube'] },
+  { q: 'Quand <i>x</i> tend vers 0 en restant positif, ln <i>x</i> tend vers :', a: '−∞', d: ['0', '+∞', '1'], why: 'Près de 0, la courbe de ln plonge vers −∞ : l’axe des ordonnées est asymptote.', go: ['ln'] },
+  { q: 'Quand <i>x</i> tend vers 0 en restant positif, 1/<i>x</i> tend vers :', a: '+∞', d: ['0', '−∞', '1'], why: 'Diviser 1 par un nombre positif de plus en plus petit donne un résultat de plus en plus grand.', go: ['inverse'] },
+  { q: 'Quand <i>x</i> tend vers −∞, e<sup><i>x</i></sup> tend vers :', a: '0', d: ['−∞', '+∞', '1'], why: 'e<sup><i>x</i></sup> reste strictement positif et s’écrase sur l’axe des abscisses : la droite <i>y</i> = 0 est asymptote en −∞.', go: ['exp'] },
+  { q: 'Que vaut ln 1 ?', a: '0', d: ['1', 'e', 'Ce n’est pas défini'], why: 'e<sup>0</sup> = 1, donc ln 1 = 0 : la courbe de ln passe par (1 ; 0).', go: ['ln'] },
+  { q: 'Que vaut e<sup>0</sup> ?', a: '1', d: ['0', 'e', 'Ce n’est pas défini'], why: 'Tout nombre non nul à la puissance 0 vaut 1 : la courbe de exp passe par (0 ; 1).', go: ['exp'] },
+  { q: 'Quelle est la période de la fonction sinus ?', a: '2π', d: ['π', 'π/2', '1'], why: 'sin(<i>x</i> + 2π) = sin <i>x</i> : le motif se répète tous les 2π.', go: ['sin'] },
+  { q: 'La tension <i>u</i>(<i>t</i>) = 325 sin(100π<i>t</i>) a pour période :', a: '0,02 s', d: ['50 s', '100π s', '0,01 s'], why: '<i>T</i> = 2π/ω = 2π/(100π) = 0,02 s, soit une fréquence de 50 Hz : c’est la tension du secteur.', go: ['sin'] },
+  { q: 'Laquelle de ces fonctions est décroissante sur ]0 ; +∞[ ?', a: mapsto(frac('1', X)), d: [mapsto(X + sup(2)), mapsto(rt(X)), mapsto('ln ' + X)], why: 'Sur ]0 ; +∞[, la fonction inverse est décroissante ; les trois autres y sont croissantes.', go: ['inverse'] },
+  { q: 'Laquelle de ces fonctions est strictement positive pour tout réel <i>x</i> ?', a: mapsto('e' + sup(X)), d: [mapsto(X + sup(2)), mapsto(`|${X}|`), mapsto(X + sup(3))], why: '<i>x</i><sup>2</sup> et |<i>x</i>| valent 0 en 0 : elles sont positives, mais pas strictement. e<sup><i>x</i></sup> > 0 partout.', go: ['exp'] },
+  { q: `Quel est le sommet de la parabole de ${FX} = (${X} − 2)${sup(2)} + 3 ?`, a: 'S(2 ; 3)', d: ['S(−2 ; 3)', 'S(3 ; 2)', 'S(2 ; −3)'], why: 'Sous la forme <i>a</i>(<i>x</i> − α)<sup>2</sup> + β, le sommet est S(α ; β) = (2 ; 3). Attention au signe de α.', go: ['carre', { a: 1, b: -4, c: 7 }] },
+  { q: `Si <i>a</i> < 0, la fonction ${FX} = <i>ax</i> + <i>b</i> est :`, a: 'décroissante sur ℝ', d: ['croissante sur ℝ', 'constante sur ℝ', 'croissante puis décroissante'], why: 'Le coefficient directeur <i>a</i> donne le sens de variation : avec <i>a</i> < 0, la droite descend.', go: ['affine', { a: -1.5, b: 2 }] },
+  { q: 'Si Δ < 0, l’équation <i>ax</i><sup>2</sup> + <i>bx</i> + <i>c</i> = 0 a :', a: 'aucune solution réelle', d: ['une seule solution', 'deux solutions', 'une infinité de solutions'], why: 'Δ < 0 : la parabole ne coupe jamais l’axe des abscisses.', go: ['carre', { a: 1, b: 1, c: 2 }] },
+  { q: 'Pour tous réels <i>a</i> et <i>b</i>, e<sup><i>a</i>+<i>b</i></sup> est égal à :', a: 'e<sup><i>a</i></sup> × e<sup><i>b</i></sup>', d: ['e<sup><i>a</i></sup> + e<sup><i>b</i></sup>', 'e<sup><i>ab</i></sup>', '(<i>a</i> + <i>b</i>) e'], why: 'L’exponentielle transforme les sommes en produits.', go: ['exp'] },
+  { q: 'Pour <i>a</i> > 0 et <i>b</i> > 0, ln(<i>ab</i>) est égal à :', a: 'ln <i>a</i> + ln <i>b</i>', d: ['ln <i>a</i> × ln <i>b</i>', 'ln <i>a</i> − ln <i>b</i>', 'ln(<i>a</i> + <i>b</i>)'], why: 'Le logarithme transforme les produits en sommes.', go: ['ln'] }
+];
+const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const N_Q = 10;
+const QZ = { round: [], i: 0, score: 0, answered: false, res: [] };
+const quizPlot = new Plot($('#cv-quiz'), { interactive: false });
+
+function newRound() {
+  const c = shuffle(SHAPES.slice()).slice(0, N_Q / 2), p = shuffle(PROPS.slice()).slice(0, N_Q / 2);
+  QZ.round = [];
+  for (let i = 0; i < N_Q / 2; i++) {
+    const s = c[i];
+    const opts = shuffle([{ h: s.h, ok: true }, ...shuffle(s.near.slice()).slice(0, 3).map(id => ({ h: SH[id].h, ok: false }))]);
+    QZ.round.push({ type: 'curve', s, opts, go: s.go, why: s.why, ans: s.h });
+    const q = p[i];
+    QZ.round.push({ type: 'prop', q, opts: shuffle([{ h: q.a, ok: true }, ...q.d.map(h => ({ h, ok: false }))]), go: q.go, why: q.why, ans: q.a });
+  }
+  QZ.i = 0; QZ.score = 0; QZ.res = []; QZ.answered = false;
+  $('#qend').hidden = true; $('#qbody').hidden = false;
+  renderQ();
+}
+function renderProg() {
+  $('#prog').innerHTML = QZ.round.map((_, i) => `<i class="${QZ.res[i] === true ? 'ok' : QZ.res[i] === false ? 'ko' : i === QZ.i ? 'cur' : ''}"></i>`).join('');
+  $('#qscore').textContent = `Score ${QZ.score} / ${QZ.res.length}`;
+}
+function renderQ() {
+  const it = QZ.round[QZ.i];
+  QZ.answered = false;
+  renderProg();
+  $('#qnum').textContent = `Question ${QZ.i + 1} sur ${N_Q} · ${it.type === 'curve' ? 'Reconnaître la courbe' : 'Propriétés'}`;
+  if (it.type === 'curve') {
+    $('#qtext').innerHTML = 'Quelle fonction est représentée par cette courbe ?';
+    $('#qplot').hidden = false;
+    quizPlot.pi = !!it.s.trig;
+    quizPlot.curves = [{ f: it.s.f, pen: 0, width: 2.8, poles: it.s.poles, domain: it.s.dom }];
+    quizPlot.fit(it.s.v, true);
+  } else {
+    $('#qtext').innerHTML = it.q.q;
+    $('#qplot').hidden = true;
+  }
+  const pre = it.type === 'curve' ? `${FX} = ` : '';
+  $('#choices').innerHTML = it.opts.map((o, i) => `<button class="choice" data-i="${i}"><span class="key">${'ABCD'[i]}</span><span>${pre}${o.h}</span></button>`).join('');
+  $$('#choices .choice').forEach(b => b.addEventListener('click', () => answer(+b.dataset.i)));
+  $('#feedback').innerHTML = '';
+}
+function answer(i) {
+  if (QZ.answered) return;
+  QZ.answered = true;
+  const it = QZ.round[QZ.i], ok = it.opts[i].ok;
+  if (ok) QZ.score++;
+  QZ.res[QZ.i] = ok;
+  $$('#choices .choice').forEach((b, k) => {
+    b.disabled = true;
+    if (it.opts[k].ok) b.classList.add('right');
+    else if (k === i) b.classList.add('wrong');
+    else b.classList.add('dim');
+  });
+  renderProg();
+  const last = QZ.i === N_Q - 1;
+  const pre = it.type === 'curve' ? `${FX} = ` : '';
+  $('#feedback').innerHTML = `<div class="fb"><p>${ok ? '<b class="verdict-ok">Bonne réponse.</b>' : `<b class="verdict-ko">Pas tout à fait.</b> La bonne réponse : <span class="m">${pre}${it.ans}</span>.`} ${it.why}</p>
+    <div class="fb-actions"><button class="btn" id="qgo">Voir la fiche</button><button class="btn primary" id="qnext">${last ? 'Voir mon score' : 'Question suivante'}</button></div></div>`;
+  $('#qgo').addEventListener('click', () => openFiche(it.go));
+  $('#qnext').addEventListener('click', next);
+  $('#qnext').focus({ preventScroll: true });
+}
+function next() {
+  if (QZ.i < N_Q - 1) { QZ.i++; renderQ(); }
+  else finish();
+}
+function finish() {
+  const s = QZ.score, best = Math.max(store.get('fr-best', 0) || 0, s);
+  store.set('fr-best', best);
+  const msg = s >= 9 ? 'Excellent : tu connais tes fonctions de référence.'
+    : s >= 7 ? 'Solide. Relis les fiches des questions manquées pour viser le sans-faute.'
+    : s >= 5 ? 'C’est un bon début. Passe par l’onglet Explorer pour les fonctions qui t’ont piégé.'
+    : 'Reprends les fiches une par une dans l’onglet Explorer, puis retente une série.';
+  const missed = QZ.round.map((it, i) => ({ it, i })).filter(({ i }) => QZ.res[i] === false);
+  $('#qbody').hidden = true;
+  const end = $('#qend');
+  end.hidden = false;
+  end.innerHTML = `<p class="lbl">Résultat de la série</p><div class="score">${s}<small> / ${N_Q}</small></div><p>${msg}</p><p class="note">Meilleur score sur cet appareil : ${best} / ${N_Q}</p>
+    ${missed.length ? `<ul class="missed">${missed.map(({ it, i }) => `<li><span>${it.type === 'curve' ? `Courbe de <span class="m">${FX} = ${it.ans}</span>` : it.q.q}</span><button class="btn" data-m="${i}">Voir la fiche</button></li>`).join('')}</ul>` : ''}
+    <div class="ctl-row"><button class="btn primary" id="qagain">Nouvelle série</button></div>`;
+  $$('#qend [data-m]').forEach(b => b.addEventListener('click', () => openFiche(QZ.round[+b.dataset.m].go)));
+  $('#qagain').addEventListener('click', newRound);
+  renderProg();
+}
+function openFiche(go) {
+  showTab('explorer');
+  selectFn(go[0], go[1]);
+  $('#p-explorer').scrollIntoView({ block: 'start' });
+}
+document.addEventListener('keydown', e => {
+  if ($('#p-quiz').hidden || $('#qbody').hidden) return;
+  if (e.target.closest && e.target.closest('input, textarea, select')) return;
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  const k = e.key.toLowerCase();
+  let i = 'abcd'.indexOf(k); if (i < 0) i = '1234'.indexOf(k);
+  if (i >= 0 && k.length === 1 && !QZ.answered) { const b = $$('#choices .choice')[i]; if (b) { e.preventDefault(); b.click(); } }
+});
+
+/* ================= CONSTRUIRE ================= */
+const LEVELS = { 1: 'Droites et parabole', 2: 'Inverse, racine, cube', 3: 'Exponentielle, ln, trigonométrie' };
+const par = (x, xl) => x < 0 ? `(${xl})` : xl;
+const CALC = 'Utilise la calculatrice et arrondis au dixième.';
+const EXOS = [
+  { id: 'aff1', lvl: 1, h: `2${X} − 1`, f: x => 2 * x - 1, xs: [-1, 0, 1, 2, 3], view: [-2, 4, -4, 6], go: ['affine', { a: 2, b: -1 }],
+    sub: p => `2 × ${p} − 1`, note: 'Une fonction affine se représente par une droite : deux points suffisent pour la tracer. Coefficient directeur 2, ordonnée à l’origine −1.' },
+  { id: 'aff2', lvl: 1, h: `${MINUS}${X} + 3`, f: x => -x + 3, xs: [-1, 0, 1, 2, 3, 4], view: [-2, 5, -2, 5], go: ['affine', { a: -1, b: 3 }],
+    sub: p => `−${p} + 3`, note: 'Droite décroissante (coefficient directeur −1) qui coupe l’axe des ordonnées en (0 ; 3) et l’axe des abscisses en (3 ; 0).' },
+  { id: 'sq', lvl: 1, h: X + sup(2), f: x => x * x, xs: [-2, -1, -0.5, 0, 0.5, 1, 2], view: [-3, 3, -1, 5], go: ['carre', { a: 1, b: 0, c: 0 }],
+    sub: p => `${p}${sup(2)}`, note: 'Parabole symétrique par rapport à l’axe des ordonnées, de sommet O. Entre −1 et 1, elle reste très près de l’axe : 0,5² = 0,25. Le bas de la courbe est arrondi, pas pointu.' },
+  { id: 'par', lvl: 2, h: `${X}${sup(2)} − 2${X} − 1`, f: x => x * x - 2 * x - 1, xs: [-1, 0, 1, 2, 3], view: [-2, 4, -3, 3.5], go: ['carre', { a: 1, b: -2, c: -1 }],
+    sub: p => `${p}${sup(2)} − 2 × ${p} − 1`, note: 'Parabole de sommet S(1 ; −2), symétrique par rapport à la droite <i>x</i> = 1 : <i>f</i>(0) = <i>f</i>(2) et <i>f</i>(−1) = <i>f</i>(3).' },
+  { id: 'inv', lvl: 2, h: frac('1', X), f: x => 1 / x, poles: [0], xs: [-2, -1, -0.5, 0, 0.5, 1, 2], view: [-3, 3, -3, 3], go: ['inverse', { k: 1 }],
+    sub: p => `1 ÷ ${p}`, none: '0 n’a pas d’image : on ne divise pas par 0.', note: '0 n’a pas d’image : la courbe a deux branches qu’on ne relie jamais. Plus <i>x</i> est proche de 0, plus 1/<i>x</i> est grand en valeur absolue.' },
+  { id: 'rac', lvl: 2, h: rt(X), f: x => x < 0 ? NaN : Math.sqrt(x), dom: [0, Infinity], xs: [-1, 0, 0.25, 1, 2.25, 4], view: [-1.5, 5, -1, 3], go: ['racine', {}],
+    sub: (p, xl) => `√${xl}`, none: 'un nombre négatif n’a pas de racine carrée.', note: '−1 n’a pas d’image. La courbe part de l’origine avec une tangente verticale, puis monte de plus en plus lentement.' },
+  { id: 'cub', lvl: 2, h: X + sup(3), f: x => x * x * x, xs: [-1.5, -1, -0.5, 0, 0.5, 1, 1.5], view: [-2.5, 2.5, -4, 4], go: ['cube', { a: 1 }],
+    sub: p => `${p} × ${p} × ${p}`, note: 'Courbe symétrique par rapport à l’origine. Elle s’aplatit autour de 0, où la tangente est horizontale, puis monte de plus en plus vite.' },
+  { id: 'exp', lvl: 3, h: 'e' + sup(X), f: x => Math.exp(x), xs: [-2, -1, 0, 1, 1.5], round: true, tip: 'Utilise la touche e<sup><i>x</i></sup> de la calculatrice et arrondis au dixième.', view: [-3, 2.5, -0.75, 5], go: ['exp', { k: 1 }],
+    sub: (p, xl) => `e<sup>${xl}</sup>`, note: 'La courbe reste au-dessus de l’axe des abscisses, passe par (0 ; 1) et monte de plus en plus vite.' },
+  { id: 'ln', lvl: 3, h: 'ln ' + X, f: x => x > 0 ? Math.log(x) : NaN, dom: [0, Infinity], xs: [-1, 0, 0.5, 1, 2, 3, 5], round: true, tip: 'Utilise la touche ln de la calculatrice et arrondis au dixième.', view: [-1.5, 6, -2, 2.5], go: ['ln', {}],
+    sub: (p, xl) => `ln(${xl})`, none: 'ln n’est définie que pour <i>x</i> > 0.', note: 'Ni 0 ni les nombres négatifs n’ont d’image. La courbe passe par (1 ; 0), plonge vers −∞ près de 0 et monte très lentement.' },
+  { id: 'sin', lvl: 3, h: 'sin ' + X, f: x => Math.sin(x), pi: true, snapX: PI / 4, xs: [-PI / 2, 0, PI / 2, PI, 3 * PI / 2, 2 * PI], tip: 'Aide-toi du cercle trigonométrique.', view: [-2.4, 7, -1.8, 1.8], go: ['sin', { A: 1, w: 1, j: 0 }],
+    sub: (p, xl) => `sin(${xl})`, note: 'Une vague régulière entre −1 et 1, qui se répète tous les 2π. Aux sommets, la courbe s’arrondit : ce n’est pas une ligne brisée.' },
+  { id: 'cos', lvl: 3, h: 'cos ' + X, f: x => Math.cos(x), pi: true, snapX: PI / 4, xs: [-PI, -PI / 2, 0, PI / 2, PI, 3 * PI / 2], tip: 'Aide-toi du cercle trigonométrique.', view: [-4, 5.6, -1.8, 1.8], go: ['cos', { A: 1, w: 1, j: 0 }],
+    sub: (p, xl) => `cos(${xl})`, note: 'La même vague que sinus, décalée : cos 0 = 1. La courbe est symétrique par rapport à l’axe des ordonnées.' }
+];
+const NONE = 'NONE';
+function parseAns(raw) {
+  let s = String(raw || '').trim().toLowerCase().replace(/\s+/g, '').replace(/,/g, '.').replace(/[−–—]/g, '-').replace(/’/g, "'");
+  if (!s) return null;
+  if (['×', 'x', '∅', '/', '-', '--', 'non', 'aucune', 'aucun', 'impossible', 'interdit', 'interdite', 'nd', 'n.d.'].includes(s) || /^(pas|impos|aucun|interdit|inexist|n'existe)/.test(s)) return NONE;
+  if (s === 'e') return Math.E;
+  if (s === '-e') return -Math.E;
+  const m = s.match(/^([+-]?\d+(?:\.\d+)?)\/([+-]?\d+(?:\.\d+)?)$/);
+  if (m) { const d = parseFloat(m[2]); return d ? parseFloat(m[1]) / d : NaN; }
+  if (/^[+-]?(\d+\.?\d*|\.\d+)$/.test(s)) return parseFloat(s);
+  return NaN;
+}
+
+const CS = { ex: null, step: 1 };
+const consPlot = new Plot($('#cv-cons'), { interactive: false, board: true });
+consPlot.overlay = consOverlay;
+const targets = () => CS.rows.filter(r => r.v !== null);
+const snap = (v, s) => Math.round(v / s) * s;
+const xlab = x => CS.ex && CS.ex.pi ? (piFrac(x) || num(x)) : num(x);
+const ptv = r => CS.ex.round ? num(r.v) : num(r.v, 3);
+function fmtV(r) { if (r.v === null) return '×'; return CS.ex.round ? (isRounded(r.v) ? '≈ ' : '') + num(r.v) : num(r.v, 3); }
+
+function startExo(id) {
+  const ex = EXOS.find(e => e.id === id) || EXOS[0];
+  CS.ex = ex; CS.step = 1;
+  let k = 0;
+  CS.rows = ex.xs.map(x => {
+    const y = ex.f(x), v = Number.isFinite(y) ? (Math.abs(y) < 1e-9 ? 0 : y) : null;
+    return { x, xl: xlab(x), v, letter: v === null ? '' : String.fromCharCode(65 + k++) };
+  });
+  const n = CS.rows.length;
+  CS.tries = Array(n).fill(0); CS.ok = Array(n).fill(false); CS.rev = Array(n).fill(false); CS.bad = Array(n).fill(false); CS.vals = Array(n).fill('');
+  CS.first = 0; CS.empty = 0; CS.checked = false;
+  CS.pts = []; CS.cur = 0; CS.ptTries = 0; CS.ptFirst = 0; CS.hint = false; CS.wrong = null; CS.hover = null; CS.press = false;
+  CS.strokes = []; CS.drawing = null; CS.result = null; CS.skipped = false; CS.msg = ''; CS.msgOk = false;
+  clearTimeout(CS.wt);
+  consPlot.pi = !!ex.pi; consPlot.curves = []; consPlot.points = [];
+  consPlot.fit(ex.view, false);
+  store.set('fr-cons-ex', ex.id);
+  renderExos(); renderConsHead(); renderTable(); renderCoach(); consPlot.draw();
+}
+function renderExos() {
+  const res = store.get('fr-cons-res', {}) || {};
+  $('#exos').innerHTML = [1, 2, 3].map(l => `<div class="exg"><h4 class="lbl">Niveau ${l} <span class="note">· ${LEVELS[l]}</span></h4>${EXOS.filter(e => e.lvl === l).map(e =>
+    `<button class="exo" data-e="${e.id}" aria-pressed="${CS.ex && CS.ex.id === e.id}"><span class="lv">N${l}</span><span>${FX} = ${e.h}</span>${res[e.id] != null ? `<span class="st" title="Meilleur résultat">✓ ${res[e.id]} %</span>` : ''}</button>`).join('')}</div>`).join('');
+  $$('#exos .exo').forEach(b => b.addEventListener('click', () => startExo(b.dataset.e)));
+  const act = $('#exos .exo[aria-pressed="true"]'), box = $('#exos');
+  if (act && box.scrollWidth > box.clientWidth + 2) box.scrollLeft = act.offsetLeft - box.offsetLeft - box.clientWidth / 2 + act.offsetWidth / 2;
+}
+function renderConsHead() {
+  const ex = CS.ex;
+  $('#c-level').textContent = `Niveau ${ex.lvl} · ${LEVELS[ex.lvl]}`;
+  $('#c-title').innerHTML = `Construis la courbe de ${FX} = ${ex.h}`;
+  const names = ['Tableau de valeurs', 'Placer les points', 'Tracer la courbe', 'Bilan'];
+  $('#c-steps').innerHTML = names.map((nm, i) => {
+    const s = i + 1, cls = s < CS.step ? 'done' : s === CS.step ? 'cur' : '';
+    return `<li class="${cls}"${s === CS.step ? ' aria-current="step"' : ''} title="${nm}"><span class="n">${s < CS.step ? '✓' : s}</span><span class="sl">${nm}</span></li>`;
+  }).join('');
+}
+function renderTable() {
+  const ex = CS.ex, tg = targets(), curRow = CS.step === 2 ? tg[CS.cur] : null;
+  $('#c-tabnote').innerHTML = (ex.round ? '· images arrondies au dixième' : '· valeurs exactes') + (CS.rows.some(r => r.v === null) ? ' · écris × si un nombre n’a pas d’image' : '');
+  let h = `<div class="vh"><i>x</i></div><div class="vh">${FX}</div>`;
+  CS.rows.forEach((r, i) => {
+    const cur = curRow === r ? ' cur' : '';
+    h += `<div class="vx${cur}">${r.letter && CS.step > 1 ? `<span class="pl">${r.letter}</span>` : ''}${r.xl}</div>`;
+    if (CS.step === 1 && !CS.ok[i]) h += `<div class="vy"><input id="c-in-${i}" class="${CS.bad[i] ? 'bad' : ''}" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Image de ${r.xl}" value="${CS.vals[i].replace(/&/g, '&amp;').replace(/"/g, '&quot;')}"></div>`;
+    else h += `<div class="vy${cur}"><span class="val ${CS.rev[i] ? 'revealed' : 'good'}" ${CS.rev[i] ? 'title="Réponse donnée"' : ''}>${fmtV(r)}</span></div>`;
+  });
+  $('#c-table').innerHTML = h;
+  const wrap = $('.vtab-wrap'), curCell = $('#c-table .vx.cur');
+  if (wrap.scrollWidth > wrap.clientWidth + 2) wrap.scrollLeft = curCell ? curCell.offsetLeft - wrap.clientWidth / 2 + curCell.offsetWidth / 2 : (CS.step > 1 ? 0 : wrap.scrollLeft);
+  $$('#c-table input').forEach(inp => {
+    const i = +inp.id.split('-')[2];
+    inp.addEventListener('input', () => { CS.vals[i] = inp.value; if (CS.bad[i]) { CS.bad[i] = false; inp.classList.remove('bad'); } });
+    inp.addEventListener('keydown', e => {
+      if (e.key !== 'Enter') return;
+      e.preventDefault();
+      const all = $$('#c-table input'), k = all.indexOf(inp);
+      if (k < all.length - 1) all[k + 1].focus(); else checkTable();
+    });
+  });
+}
+function checkTable() {
+  let empty = 0;
+  const ex = CS.ex;
+  CS.rows.forEach((r, i) => {
+    if (CS.ok[i]) return;
+    const a = parseAns(CS.vals[i]);
+    if (a === null) { empty++; CS.bad[i] = true; return; }
+    const good = r.v === null ? a === NONE : (typeof a === 'number' && Number.isFinite(a) && Math.abs(a - r.v) <= (ex.round ? 0.051 : 1e-6));
+    if (good) { CS.ok[i] = true; CS.bad[i] = false; if (CS.tries[i] === 0) CS.first++; }
+    else {
+      CS.tries[i]++;
+      if (CS.tries[i] >= 2) { CS.ok[i] = true; CS.rev[i] = true; CS.bad[i] = false; }
+      else CS.bad[i] = true;
+    }
+  });
+  CS.empty = empty; CS.checked = true;
+  renderTable(); renderCoach();
+  const firstBad = $('#c-table input.bad');
+  if (firstBad) firstBad.focus({ preventScroll: true });
+}
+function calcLine(r) {
+  const ex = CS.ex;
+  if (r.v === null) return `<i>f</i>(${r.xl}) n’existe pas : ${ex.none}`;
+  const v = fmtV(r);
+  return `<i>f</i>(${r.xl}) = ${ex.sub(par(r.x, r.xl), r.xl)} ${v.startsWith('≈') ? v : '= ' + v}`;
+}
+function goStep(n, msg, ok) {
+  CS.step = n; CS.msg = msg || ''; CS.msgOk = !!ok; CS.hover = null;
+  if (n === 4) CS.result = CS.skipped ? null : evalTrace();
+  renderConsHead(); renderTable(); renderCoach(); consPlot.draw();
+  if (n === 4) { saveCons(); revealCurve(); }
+}
+function scoreParts() {
+  const tg = targets(), parts = [CS.first / CS.rows.length, CS.ptFirst / tg.length];
+  if (CS.result) parts.push(CS.result.score / 100);
+  return Math.round(100 * parts.reduce((a, b) => a + b, 0) / parts.length);
+}
+function saveCons() {
+  const res = store.get('fr-cons-res', {}) || {}, g = scoreParts();
+  if (res[CS.ex.id] == null || g > res[CS.ex.id]) { res[CS.ex.id] = g; store.set('fr-cons-res', res); }
+  renderExos();
+}
+function renderCoach() {
+  const ex = CS.ex, box = $('#c-coach'), n = CS.rows.length, tg = targets();
+  let h = '';
+  if (CS.step === 1) {
+    if (!CS.ok.every(Boolean)) {
+      h = `<h3 class="lbl">Étape 1 · Tableau de valeurs</h3><p class="lead">Calcule l’image de chaque valeur de <i>x</i> et complète la ligne ${FX} du tableau.</p>`;
+      if (ex.tip) h += `<p class="note">${ex.tip}</p>`;
+      const bads = CS.rows.map((r, i) => ({ r, i })).filter(({ i }) => CS.bad[i] && CS.tries[i] > 0);
+      if (bads.length) h += `<div class="fbk ko"><p><b>À corriger</b></p><ul>${bads.map(({ r }) => `<li><i>f</i>(${r.xl}) : ${r.v === null ? `est-ce que <i>f</i>(${r.xl}) existe vraiment ?` : `calcule ${ex.sub(par(r.x, r.xl), r.xl)}.`}</li>`).join('')}</ul><p class="note" style="margin-top:6px">Une deuxième erreur sur une case affiche la réponse.</p></div>`;
+      if (CS.checked && CS.empty) h += `<div class="fbk ko"><p>Complète toutes les cases avant de vérifier.</p></div>`;
+      h += `<div class="ctl-row"><button class="btn primary" id="c-check">Vérifier le tableau</button></div>`;
+    } else {
+      const revs = CS.rows.filter((r, i) => CS.rev[i]);
+      h = `<h3 class="lbl">Étape 1 terminée</h3><p class="lead">Tableau complet : <b>${CS.first} / ${n}</b> du premier coup.</p>`;
+      if (revs.length) h += `<div class="fbk ko"><p><b>Réponses données</b></p><ul>${revs.map(r => `<li>${calcLine(r)}</li>`).join('')}</ul></div>`;
+      else h += `<div class="fbk ok"><p>Aucune erreur, bravo.</p></div>`;
+      h += `<div class="ctl-row"><button class="btn primary" id="c-to2">Placer les points</button></div>`;
+    }
+  } else if (CS.step === 2) {
+    const t = tg[CS.cur];
+    h = `<h3 class="lbl">Étape 2 · ${CS.cur} / ${tg.length} points placés</h3><p class="lead">Place le point</p><p class="target"><b>${t.letter}</b>(${t.xl} ; ${ptv(t)})</p>
+      <p class="note">Clique ou touche le quadrillage : le point se cale sur les graduations. Au clavier, déplace la croix avec les flèches et valide avec Entrée.</p>`;
+    if (CS.msg) h += `<div class="fbk ${CS.msgOk ? 'ok' : 'ko'}"><p>${CS.msg}</p></div>`;
+  } else if (CS.step === 3) {
+    const k = CS.strokes.length;
+    h = `<h3 class="lbl">Étape 3 · Tracer la courbe</h3><p class="lead">Trace la courbe à main levée en passant par tous les points, comme sur ta copie.</p>
+      <p class="note">${ex.poles ? 'Rappel : 0 n’a pas d’image. Lève le crayon entre les deux branches. ' : ''}Tu peux faire plusieurs traits. La correction apparaîtra en rouge.</p>`;
+    if (CS.msg) h += `<div class="fbk ${CS.msgOk ? 'ok' : 'ko'}"><p>${CS.msg}</p></div>`;
+    h += `<div class="ctl-row"><button class="btn" id="c-undo" ${k ? '' : 'disabled'}>Annuler le dernier trait</button><button class="btn primary" id="c-eval" ${k ? '' : 'disabled'}>Vérifier mon tracé</button></div>
+      <button class="linkish" id="c-skip">Je ne peux pas dessiner ici : voir la correction</button>`;
+  } else {
+    const g = scoreParts(), r = CS.result;
+    const pill = g >= 85 ? ['ok', 'Courbe maîtrisée'] : g >= 60 ? ['mid', 'Presque'] : ['ko', 'À retravailler'];
+    const meter = v => `<span class="meter"><i style="width:${Math.round(v * 100)}%"></i></span>`;
+    let msgs = [];
+    if (r) {
+      if (r.crossPole) msgs.push('Ton tracé relie les deux branches : en 0 il n’y a pas de point, il faut lever le crayon.');
+      if (r.score >= 85 && !r.crossPole) msgs.push('Très beau tracé : il suit la courbe sur tout l’intervalle.');
+      else {
+        if (r.acc < 0.8 && r.worst !== null) msgs.push(`Ton tracé s’écarte surtout de la courbe vers <i>x</i> ≈ ${CS.ex.pi ? (piFrac(snap(r.worst, PI / 4)) || num(r.worst, 1)) : num(r.worst, 1)}.`);
+        if (r.cov < 0.8) msgs.push(`Il ne couvre pas tout l’intervalle : la courbe va de <i>x</i> = ${xlab(r.xa)} à <i>x</i> = ${xlab(r.xb)}.`);
+        if (!msgs.length) msgs.push('Tracé correct, qui peut encore gagner en précision entre les points.');
+      }
+    }
+    h = `<h3 class="lbl">Étape 4 · Bilan</h3>
+      <div class="verdict"><span class="pill ${pill[0]}">${pill[1]}</span><span class="big-score">${g} %</span></div>
+      <ul class="metrics">
+        <li><span>Tableau de valeurs</span><b>${CS.first} / ${n} <small>du premier coup</small></b>${meter(CS.first / n)}</li>
+        <li><span>Points placés</span><b>${CS.ptFirst} / ${tg.length} <small>du premier coup</small></b>${meter(CS.ptFirst / tg.length)}</li>
+        <li><span>Tracé à main levée</span><b>${r ? r.score + ' %' : '<small>non tracé</small>'}</b>${meter(r ? r.score / 100 : 0)}</li>
+      </ul>
+      ${msgs.length ? `<div class="fbk ${r && r.score >= 85 && !r.crossPole ? 'ok' : 'ko'}"><p>${msgs.join(' ')}</p></div>` : ''}
+      <div class="seen"><h4 class="lbl">Ce qu’il fallait voir</h4><p>${ex.note}</p></div>
+      <div class="legend-mini"><span><i style="background:var(--pen-2)"></i>courbe exacte</span><span><i style="background:var(--ink-2)"></i>ton tracé</span><span><b style="color:var(--pen-1)">×</b> tes points</span></div>
+      <div class="ctl-row"><button class="btn primary" id="c-nextex">Exercice suivant</button><button class="btn" id="c-redo">Recommencer</button><button class="btn" id="c-fiche">Voir la fiche</button></div>`;
+  }
+  box.innerHTML = h;
+  const on = (id, fn) => { const b = $('#' + id); if (b) b.addEventListener('click', fn); };
+  on('c-check', checkTable);
+  on('c-to2', () => goStep(2));
+  on('c-undo', () => { CS.strokes.pop(); CS.msg = ''; renderCoach(); consPlot.draw(); });
+  on('c-eval', () => goStep(4));
+  on('c-skip', () => { CS.skipped = true; goStep(4); });
+  on('c-nextex', () => { const i = EXOS.indexOf(CS.ex); startExo(EXOS[(i + 1) % EXOS.length].id); $('#p-construire').scrollIntoView({ block: 'start' }); });
+  on('c-redo', () => startExo(CS.ex.id));
+  on('c-fiche', () => openFiche(CS.ex.go));
+}
+function placePoint(h) {
+  const tg = targets(), t = tg[CS.cur];
+  if (!t || !h) return;
+  const ex = CS.ex, sx = ex.snapX || 0.25, sy = ex.snapY || 0.25;
+  const tx = Math.max(0.2, sx * 0.6), ty = Math.max(0.2, sy * 0.6);
+  const xOk = Math.abs(h.x - t.x) <= tx, yOk = Math.abs(h.y - t.v) <= ty;
+  if (xOk && yOk) {
+    CS.pts.push({ x: h.x, y: h.y, n: t.letter });
+    if (CS.ptTries === 0) CS.ptFirst++;
+    CS.cur++; CS.ptTries = 0; CS.hint = false; CS.wrong = null;
+    if (CS.cur >= tg.length) { goStep(3, 'Tous les points sont placés. À toi de tracer la courbe.', true); return; }
+    CS.msg = `Point ${t.letter} bien placé.`; CS.msgOk = true;
+  } else {
+    CS.ptTries++;
+    CS.wrong = { x: h.x, y: h.y };
+    clearTimeout(CS.wt);
+    CS.wt = setTimeout(() => { CS.wrong = null; consPlot.draw(); }, 1300);
+    CS.msg = xOk ? `Bonne abscisse. L’ordonnée doit être ${ptv(t)} : ${h.y < t.v ? 'monte' : 'descends'}.`
+      : yOk ? `Bonne ordonnée. L’abscisse doit être ${t.xl} : va plus à ${h.x < t.x ? 'droite' : 'gauche'}.`
+      : `Tu as visé (${xlab(h.x)} ; ${num(h.y)}). Le point ${t.letter} est en (${t.xl} ; ${ptv(t)}) : lis d’abord <i>x</i> sur l’axe horizontal, puis <i>f</i>(<i>x</i>) sur l’axe vertical.`;
+    if (CS.ptTries >= 2) { CS.hint = true; CS.msg += ' Le cercle en pointillés montre l’endroit.'; }
+    CS.msgOk = false;
+  }
+  renderTable(); renderCoach(); consPlot.draw();
+}
+function consOverlay(P) {
+  const ctx = P.ctx;
+  if (!CS.ex) return;
+  if (CS.strokes.length) {
+    ctx.save();
+    ctx.strokeStyle = TH.ink2; ctx.fillStyle = TH.ink2; ctx.globalAlpha = CS.step === 4 ? 0.6 : 0.95;
+    ctx.lineWidth = 2.6; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    for (const s of CS.strokes) {
+      ctx.beginPath();
+      s.forEach(([x, y], i) => { const X = P.X(x), Y = P.Y(y); if (i) ctx.lineTo(X, Y); else ctx.moveTo(X, Y); });
+      if (s.length === 1) ctx.lineTo(P.X(s[0][0]) + 0.1, P.Y(s[0][1]));
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+  const cross = (X, Y, color, r) => {
+    ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 2.4; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(X - r, Y - r); ctx.lineTo(X + r, Y + r); ctx.moveTo(X + r, Y - r); ctx.lineTo(X - r, Y + r); ctx.stroke(); ctx.restore();
+  };
+  if (CS.step === 2 && CS.hint) {
+    const t = targets()[CS.cur];
+    if (t) { ctx.save(); ctx.setLineDash([4, 4]); ctx.strokeStyle = TH.pens[0]; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(P.X(t.x), P.Y(t.v), 16, 0, 2 * PI); ctx.stroke(); ctx.restore(); }
+  }
+  for (const p of CS.pts) {
+    const X = P.X(p.x), Y = P.Y(p.y);
+    cross(X, Y, TH.pens[0], 6);
+    ctx.font = `italic 600 15px ${MATH}`; ctx.textAlign = 'left';
+    P.halo(p.n, X + 8, Y - 9, TH.pens[0]);
+  }
+  if (CS.wrong) {
+    const X = P.X(CS.wrong.x), Y = P.Y(CS.wrong.y);
+    cross(X, Y, TH.bad, 7);
+    ctx.save(); ctx.strokeStyle = TH.bad; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.arc(X, Y, 14, 0, 2 * PI); ctx.stroke(); ctx.restore();
+  }
+  if (CS.step === 2 && CS.hover) {
+    const X = P.X(CS.hover.x), Y = P.Y(CS.hover.y);
+    const ox = Math.min(Math.max(P.X(0), 0), P.w), oy = Math.min(Math.max(P.Y(0), 0), P.h);
+    ctx.save(); ctx.setLineDash([4, 4]); ctx.strokeStyle = TH.ink3; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(X, Y); ctx.lineTo(X, oy); ctx.moveTo(X, Y); ctx.lineTo(ox, Y); ctx.stroke(); ctx.restore();
+    cross(X, Y, TH.ink3, 5);
+    const tag = `(${xlab(CS.hover.x)} ; ${num(CS.hover.y)})`;
+    ctx.font = `600 12.5px ${MONO}`;
+    const right = X > P.w - 130;
+    ctx.textAlign = right ? 'right' : 'left';
+    P.halo(tag, right ? X - 12 : X + 12, Y < 30 ? Y + 24 : Y - 12, TH.ink);
+  }
+}
+function revealCurve() {
+  const ex = CS.ex, a = consPlot.x0, b = consPlot.x1;
+  const base = { f: ex.f, pen: 1, width: 2.8, poles: ex.poles, domain: ex.dom };
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) { consPlot.curves = [base]; consPlot.draw(); return; }
+  const lo = ex.dom ? Math.max(ex.dom[0], a) : a, t0 = performance.now(), dur = 1100, exo = ex;
+  const tick = now => {
+    if (CS.ex !== exo || CS.step !== 4) return;
+    const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+    consPlot.curves = [Object.assign({}, base, { domain: [ex.dom ? ex.dom[0] : -Infinity, lo + (b - lo) * e] })];
+    consPlot.draw();
+    if (k < 1) requestAnimationFrame(tick); else { consPlot.curves = [base]; consPlot.draw(); }
+  };
+  requestAnimationFrame(tick);
+}
+function evalTrace() {
+  const P = consPlot, ex = CS.ex, tol = Math.max(10, Math.min(P.w, P.h) * 0.03);
+  const truth = []; let prev = null;
+  for (let px = 0; px <= P.w; px += 1.5) {
+    const x = P.ix(px);
+    if (ex.poles && prev && ex.poles.some(q => (q - prev[2]) * (q - x) <= 0)) prev = null;
+    const y = ex.f(x);
+    if (!Number.isFinite(y)) { prev = null; continue; }
+    const py = P.Y(y);
+    if (py < -300 || py > P.h + 300) { prev = null; continue; }
+    if (prev) {
+      const d = Math.hypot(px - prev[0], py - prev[1]), m = Math.ceil(d / 3);
+      for (let k = 1; k < m; k++) truth.push([prev[0] + (px - prev[0]) * k / m, prev[1] + (py - prev[1]) * k / m]);
+    }
+    prev = [px, py, x]; truth.push(prev);
+  }
+  const samples = []; let crossPole = false;
+  for (const s of CS.strokes) {
+    if (ex.poles) { const xs = s.map(q => q[0]), mn = Math.min(...xs), mx = Math.max(...xs); if (ex.poles.some(q => mn < q - 0.1 && mx > q + 0.1)) crossPole = true; }
+    const pts = s.map(([x, y]) => [P.X(x), P.Y(y)]);
+    pts.forEach((p, i) => {
+      if (!i) { samples.push(p); return; }
+      const [ax, ay] = pts[i - 1], d = Math.hypot(p[0] - ax, p[1] - ay), m = Math.max(1, Math.round(d / 3));
+      for (let k = 1; k <= m; k++) samples.push([ax + (p[0] - ax) * k / m, ay + (p[1] - ay) * k / m]);
+    });
+  }
+  const tg = targets(), xa = Math.min(...tg.map(r => r.x)), xb = Math.max(...tg.map(r => r.x));
+  if (!samples.length || !truth.length) return { acc: 0, cov: 0, score: 0, worst: null, crossPole, xa, xb };
+  let good = 0, worst = null, worstD = 0; const okX = [];
+  for (const [sx, sy] of samples) {
+    let best = Infinity;
+    for (const t of truth) { const d = (t[0] - sx) ** 2 + (t[1] - sy) ** 2; if (d < best) best = d; }
+    best = Math.sqrt(best);
+    if (best <= tol) { good++; okX.push(P.ix(sx)); }
+    else if (best > worstD) { worstD = best; worst = P.ix(sx); }
+  }
+  const acc = good / samples.length, N = 40;
+  let elig = 0, cov = 0;
+  for (let i = 0; i < N; i++) {
+    const lo = xa + (xb - xa) * i / N, hi = xa + (xb - xa) * (i + 1) / N, xc = (lo + hi) / 2, y = ex.f(xc);
+    if (!Number.isFinite(y)) continue;
+    const py = P.Y(y);
+    if (py < 0 || py > P.h) continue;
+    elig++;
+    if (okX.some(x => x >= lo - 1e-9 && x <= hi + 1e-9)) cov++;
+  }
+  const c = elig ? cov / elig : 0;
+  return { acc, cov: c, score: Math.round(100 * Math.sqrt(acc * c)), worst, crossPole, xa, xb };
+}
+(() => {
+  const cc = $('#cv-cons');
+  const loc = e => { const r = cc.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+  const setHover = (px, py) => {
+    const ex = CS.ex, sx = ex.snapX || 0.25, sy = ex.snapY || 0.25;
+    CS.hover = { x: snap(consPlot.ix(px), sx), y: snap(consPlot.iy(py), sy) };
+    consPlot.draw();
+  };
+  cc.addEventListener('pointerdown', e => {
+    if (e.button > 0 || !CS.ex) return;
+    const [px, py] = loc(e);
+    try { cc.setPointerCapture(e.pointerId); } catch (_) {}
+    if (CS.step === 2) { CS.press = true; setHover(px, py); }
+    else if (CS.step === 3) { CS.drawing = [[consPlot.ix(px), consPlot.iy(py)]]; CS.strokes.push(CS.drawing); CS.msg = ''; consPlot.draw(); }
+    e.preventDefault();
+  });
+  cc.addEventListener('pointermove', e => {
+    if (!CS.ex) return;
+    const [px, py] = loc(e);
+    if (CS.step === 2 && (CS.press || e.pointerType === 'mouse')) setHover(px, py);
+    else if (CS.step === 3 && CS.drawing) {
+      const last = CS.drawing[CS.drawing.length - 1];
+      if (Math.hypot(consPlot.X(last[0]) - px, consPlot.Y(last[1]) - py) > 2) { CS.drawing.push([consPlot.ix(px), consPlot.iy(py)]); consPlot.draw(); }
+    }
+  });
+  const up = e => {
+    if (CS.step === 2 && CS.press) {
+      CS.press = false;
+      if (e.type === 'pointerup' && CS.hover) placePoint(CS.hover);
+      if (e.pointerType !== 'mouse') { CS.hover = null; consPlot.draw(); }
+    }
+    if (CS.step === 3 && CS.drawing) { CS.drawing = null; renderCoach(); }
+  };
+  cc.addEventListener('pointerup', up);
+  cc.addEventListener('pointercancel', up);
+  cc.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse' && !CS.press && CS.step === 2) { CS.hover = null; consPlot.draw(); } });
+  cc.addEventListener('keydown', e => {
+    if (!CS.ex || CS.step !== 2) return;
+    const ex = CS.ex, sx = ex.snapX || 0.25, sy = ex.snapY || 0.25;
+    if (!CS.hover) CS.hover = { x: snap((consPlot.x0 + consPlot.x1) / 2, sx), y: snap((consPlot.y0 + consPlot.y1) / 2, sy) };
+    const m = { ArrowLeft: [-sx, 0], ArrowRight: [sx, 0], ArrowUp: [0, sy], ArrowDown: [0, -sy] }[e.key];
+    if (m) { e.preventDefault(); CS.hover = { x: snap(CS.hover.x + m[0], sx), y: snap(CS.hover.y + m[1], sy) }; consPlot.draw(); }
+    else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); placePoint(CS.hover); }
+  });
+})();
+
+/* ================= Onglets ================= */
+const TABS = ['explorer', 'comparer', 'construire', 'quiz'];
+function showTab(id) {
+  TABS.forEach(t => {
+    const on = t === id, b = $('#tab-' + t);
+    b.setAttribute('aria-selected', on); b.tabIndex = on ? 0 : -1;
+    $('#p-' + t).hidden = !on;
+  });
+  store.set('fr-tab', id);
+  setHash(id === 'explorer' ? EX.fid : id);
+  if (id === 'quiz' && !QZ.round.length) newRound();
+  requestAnimationFrame(() => PLOTS.forEach(p => p.resize()));
+}
+TABS.forEach((t, i) => {
+  const b = $('#tab-' + t);
+  b.addEventListener('click', () => showTab(t));
+  b.addEventListener('keydown', e => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    e.preventDefault();
+    const n = TABS[(i + (e.key === 'ArrowRight' ? 1 : TABS.length - 1)) % TABS.length];
+    showTab(n); $('#tab-' + n).focus();
+  });
+});
+
+/* ================= Démarrage ================= */
+renderRail();
+renderPresets();
+const hash = (location.hash || '').slice(1);
+const startFn = FN[hash] ? hash : (FN[store.get('fr-fn', 'carre')] ? store.get('fr-fn', 'carre') : 'carre');
+selectFn(startFn);
+applyPreset('ordre');
+startExo(EXOS.some(e => e.id === store.get('fr-cons-ex', 'aff1')) ? store.get('fr-cons-ex', 'aff1') : 'aff1');
+const startTab = TABS.includes(hash) ? hash : FN[hash] ? 'explorer' : (TABS.includes(store.get('fr-tab', 'explorer')) ? store.get('fr-tab', 'explorer') : 'explorer');
+showTab(startTab);
+})();
+</script>
+
+</body>
+</html>
